@@ -1,0 +1,20 @@
+---
+title: "About"
+image: profile.jpg
+about:
+  template: jolla
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://x.com/usimu13
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/aphiautimuan/
+    - icon: github
+      text: Github
+      href: https://github.com/aphiaut
+---
+
+Hello guys!!! My name is Aphiaut Imuan, you can call me Auggie.
+
+I hope everyone will fun with my blog
