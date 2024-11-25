@@ -1,0 +1,8 @@
+---
+title: "Economics"
+author: "Auggie Imuan"
+date: "2024-11-11"
+categories: [news, economics, analysis]
+---
+
+Hello World
