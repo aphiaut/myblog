@@ -1,6 +1,6 @@
 ---
 title: "Post With Code"
-author: "Harlow Malloc"
+author: "Auggie Imuan"
 date: "2024-11-24"
 categories: [news, code, analysis]
 image: "image.jpg"
