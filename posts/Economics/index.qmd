@@ -1,8 +1,14 @@
 ---
-title: "Economics"
+title: "The Factors Affect CO2 Emission in 5-ASEAN Countries"
 author: "Auggie Imuan"
-date: "2024-11-11"
-categories: [news, economics, analysis]
+date: "2021-3-31"
+categories: [economics, analysis]
 ---
 
-Hello World
+##Introduction
+
+Global warming giving rise to changes in the climate system. Cause of global warming due to Greenhouse gases (GHG). However, an increasing amount of GHG emission due to human activities such as increased industry, transportation etc. Which activities have CO2 emission that is predominant the main contributor to the total GHG emissions (Intergovernmental Panel on Climate Change, 2014). The GHG are composed of CO2 with more than 72% (Yunfeng and Laike, 2010). Moreover, CO2 emission share from developing countries is nearly 50 percent of the world's total CO2 emissions in 2003 (Martinez-Zarzoso and Maruotti, 2011).
+
+The proportion of countries with members that have the most developing countries are ASEAN which developing countries members growing economic development, as well as rise income level and other socio-economic drivers. By the developing countries in ASEAN have increasing investment and foreign investment inflow that lead to increasing CO2 emission every year and become the cause to environmental degradation.
+
+Even though, CO2 emission of ASEAN less than China and the USA, ASEAN is predicted to have several affects from global warming by increasing sea level (Nordin et al., 2015) including endangered coastal areas and small islands, and severity of extreme weather events. Moreover, the ASEAN-people affected by CO2 emission due to the region is populated along coastlines and heavily reliant on agriculture for livelihoods. If CO2 emission increases then temperature is increased which directly affects natural resources and forestry lead to rainfall tended downward, heat waves, droughts, floods, and tropical cyclones (Environment Division of the ASEAN Secretariat, n.d.). The increase of CO2 emission in ASEAN has tended to increase from time to time. In 2018, the 5 countries in ASEAN that have the most CO2 emission are Indonesia, Thailand, Vietnam, Malaysia, and Philippines, respectively
