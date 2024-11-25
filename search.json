@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Aphiaut Imuan (Auggie)",
+    "section": "",
+    "text": "Hello guys!!! My name is Aphiaut Imuan, you can call me Auggie. I’m a little cute Thai guy. I hope you will kind to me and happy with my blog. 😄\n\n\nMonash University | Melbourne, Australia\nMaster of Business Analytics\nMarch 2022 - June 2024\nMaejo University | Chiang Mai, Thailand\nBachelor of Economics (International Economics)\nJune 2018 - April 2021\n\n\n\nEmpire Hospitality Australia Pty Ltd | Room Attendance (Turndown Service)\nDecember 2022 - Present\nMonash University & Alfred Health | Research Assistance\nAugust 2023 - October 2024\nMuang Thai Life Assurance Public Company Limited | Life Planner\nJune 2021 - January 2022"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "Aphiaut Imuan (Auggie)",
+    "section": "",
+    "text": "Monash University | Melbourne, Australia\nMaster of Business Analytics\nMarch 2022 - June 2024\nMaejo University | Chiang Mai, Thailand\nBachelor of Economics (International Economics)\nJune 2018 - April 2021"
+  },
+  {
+    "objectID": "about.html#experiences",
+    "href": "about.html#experiences",
+    "title": "Aphiaut Imuan (Auggie)",
+    "section": "",
+    "text": "Empire Hospitality Australia Pty Ltd | Room Attendance (Turndown Service)\nDecember 2022 - Present\nMonash University & Alfred Health | Research Assistance\nAugust 2023 - October 2024\nMuang Thai Life Assurance Public Company Limited | Life Planner\nJune 2021 - January 2022"
+  },
+  {
+    "objectID": "posts/Economics/index.html",
+    "href": "posts/Economics/index.html",
+    "title": "Economics",
+    "section": "",
+    "text": "Hello World"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Auggie’s blog",
+    "section": "",
+    "text": "Post With Code\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nNov 24, 2024\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nNov 21, 2024\n\n\nTristan O’Malley\n\n\n\n\n\n\n\n\n\n\n\n\nEconomics\n\n\n\n\n\n\nnews\n\n\neconomics\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nNov 11, 2024\n\n\nAuggie Imuan\n\n\n\n\n\n\nNo matching items"
+  }
+]
