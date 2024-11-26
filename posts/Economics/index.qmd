@@ -5,10 +5,150 @@ date: "2021-3-31"
 categories: [economics, analysis]
 ---
 
-##Introduction
+## Introduction
 
 Global warming giving rise to changes in the climate system. Cause of global warming due to Greenhouse gases (GHG). However, an increasing amount of GHG emission due to human activities such as increased industry, transportation etc. Which activities have CO2 emission that is predominant the main contributor to the total GHG emissions (Intergovernmental Panel on Climate Change, 2014). The GHG are composed of CO2 with more than 72% (Yunfeng and Laike, 2010). Moreover, CO2 emission share from developing countries is nearly 50 percent of the world's total CO2 emissions in 2003 (Martinez-Zarzoso and Maruotti, 2011).
 
 The proportion of countries with members that have the most developing countries are ASEAN which developing countries members growing economic development, as well as rise income level and other socio-economic drivers. By the developing countries in ASEAN have increasing investment and foreign investment inflow that lead to increasing CO2 emission every year and become the cause to environmental degradation.
 
 Even though, CO2 emission of ASEAN less than China and the USA, ASEAN is predicted to have several affects from global warming by increasing sea level (Nordin et al., 2015) including endangered coastal areas and small islands, and severity of extreme weather events. Moreover, the ASEAN-people affected by CO2 emission due to the region is populated along coastlines and heavily reliant on agriculture for livelihoods. If CO2 emission increases then temperature is increased which directly affects natural resources and forestry lead to rainfall tended downward, heat waves, droughts, floods, and tropical cyclones (Environment Division of the ASEAN Secretariat, n.d.). The increase of CO2 emission in ASEAN has tended to increase from time to time. In 2018, the 5 countries in ASEAN that have the most CO2 emission are Indonesia, Thailand, Vietnam, Malaysia, and Philippines, respectively
+
+
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| include: false
+
+library(tidyverse)
+library(ggplot2)
+library(plotly)
+
+co2 <- read_csv("data/co2.csv")
+energy <- read_csv("data/energy.csv")
+gdp <- read_csv("data/gdp.csv")
+industry <- read_csv("data/industry.csv")
+population <- read_csv("data/population.csv")
+urban <- read_csv("data/urban.csv")
+ASEAN_co2 <- read_csv("data/co2_ASEAN.csv")
+
+
+
+
+clean_dataframe <- function(data) {
+  # Remove the "Series Code" column 
+  if ("Series Code" %in% colnames(data)) {
+    data <- data[, !colnames(data) %in% "Series Code"]
+  }
+  
+  # Rename "Series Name" column to "Variable"
+  colnames(data) <- ifelse(colnames(data) == "Series Name", "Variable", colnames(data))
+  
+  # Clean column names to remove brackets and whitespace
+  colnames(data) <- gsub("\\[.*\\]", "", colnames(data)) # Remove anything in square brackets
+  colnames(data) <- trimws(colnames(data)) # Remove leading and trailing whitespace
+  
+  # Select only rows 1 to 5
+  data <- data[1:5, ]
+  
+  # Ensure all year columns are numeric
+  numeric_columns <- colnames(data)[!colnames(data) %in% c("Country Name", "Country Code", "Variable")]
+  data[numeric_columns] <- lapply(data[numeric_columns], function(x) as.numeric(as.character(x)))
+  
+  # Pivot the year columns into a long format
+  data <- pivot_longer(
+    data,
+    cols = -c(`Country Name`, `Country Code`, `Variable`), # All columns except these
+    names_to = "Year", # Name for the new "Year" column
+    values_to = "Value" # Name for the new "Value" column
+  )
+  
+  # Return data frame
+  return(data)
+}
+
+clean_dataASEAN <- function(data) {
+  # Remove the "Series Code" column 
+  if ("Series Code" %in% colnames(data)) {
+    data <- data[, !colnames(data) %in% "Series Code"]
+  }
+  
+  # Rename "Series Name" column to "Variable"
+  colnames(data) <- ifelse(colnames(data) == "Series Name", "Variable", colnames(data))
+  
+  # Clean column names to remove brackets and whitespace
+  colnames(data) <- gsub("\\[.*\\]", "", colnames(data)) # Remove anything in square brackets
+  colnames(data) <- trimws(colnames(data)) # Remove leading and trailing whitespace
+  
+  # Select only rows 1 to 10
+  data <- data[1:10, ]
+  
+  # Ensure all year columns are numeric
+  numeric_columns <- colnames(data)[!colnames(data) %in% c("Country Name", "Country Code", "Variable")]
+  data[numeric_columns] <- lapply(data[numeric_columns], function(x) as.numeric(as.character(x)))
+  
+  # Pivot the year columns into a long format
+  data <- pivot_longer(
+    data,
+    cols = -c(`Country Name`, `Country Code`, `Variable`), # All columns except these
+    names_to = "Year", # Name for the new "Year" column
+    values_to = "Value" # Name for the new "Value" column
+  )
+  
+  # Return data frame
+  return(data)
+}
+
+
+my_var <- c("co2", "energy", "gdp", "industry", "population", "urban")
+
+# Loop through each data frame name
+for (df_name in my_var) {
+  # Get the data frame by its name
+  df <- get(df_name)
+  
+  # Apply the cleaning function
+  cleaned_df <- clean_dataframe(df)
+  
+  # Assign the cleaned data frame back to the original variable
+  assign(df_name, cleaned_df)
+}
+
+ASEAN_co2 <- clean_dataASEAN(ASEAN_co2)
+```
+
+```{r}
+#| echo: false
+#| warning: false
+ASEAN_co2 <- ASEAN_co2 %>% filter(!is.na(Value)) %>%
+  mutate(Year = as.numeric(Year))
+
+ggplot(ASEAN_co2, aes(x = Year, y = Value, color = `Country Name`, group = `Country Name`)) +
+  geom_line(size = 1) +  # Slightly thicker lines for better visibility
+  geom_point(size = 0.5) +   # Larger points for emphasis
+  labs(
+    title = "CO2 Emissions across ASEAN countries",
+    subtitle = "CO2 Emissions (1990-2022)",
+    x = "Year",
+    y = "Emissions (in Metric Tons)",
+    color = "Country"
+  ) +
+  scale_x_continuous(breaks = seq(1970, 2022, 5)) + 
+  theme_bw() +  # Cleaner theme
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),  # Centered and bold title
+    plot.subtitle = element_text(hjust = 0.5, size = 12),  # Centered subtitle
+    axis.title = element_text(size = 14),  # Larger axis titles
+    axis.text = element_text(size = 12),   # Larger axis text
+    axis.text.x = element_text(angle = 45, hjust = 1),  # Rotate x-axis labels
+    legend.title = element_text(size = 12),  # Adjust legend title size
+    legend.text = element_text(size = 10),   # Adjust legend text size
+    panel.grid.major = element_line(color = "gray", linetype = "dotted"),  # Dotted grid lines
+    panel.grid.minor = element_blank()  # Remove minor grid lines
+  )
+
+```
+
+
+
