@@ -22,7 +22,7 @@ The increase in CO2 emissions in ASEAN has tended to increase occasionally. In 2
 
 library(tidyverse)
 library(ggplot2)
-library(plotly)
+
 
 co2 <- read_csv("data/co2.csv")
 energy <- read_csv("data/energy.csv")
@@ -179,7 +179,42 @@ Although most studies investigate the positive relationship between gross domest
 
 Finally, the last cause of CO2 emission by human activities is technology. Paul and John (1971) believe that in a technological society, each human individual has a negative impact on the environment. Even though, technology is an indicator that difficult measures to value, most researchers use energy consumption to describe the level of technology, for example, if less energy consumption refers to the level of technology is high (Mansoor and Sultana, 2018). Zhang and Chenh (2009) examined how an increase in energy consumption brings about an increased CO2 emission. In addition, the indicators that use rather energy consumption is energy intensity (Koçak et al., 2020). Wolde-Rufael and Idowu (2017) investigated that China and India have a positive relationship between energy consumption and CO2 emission due to low-level technology. Thus it used high energy intensity in contrast low energy intensity implied the high level of technology. Talbi (2017) and Le et al (2020) express energy consumption illustrate technology, moreover; energy consumption measured by energy intensity investigated energy intensity positive effects on CO2 emission in the short run. On the contrary, Koçak et al (2020) and Xu and Ang (2013) found the reduction in energy intensity represents technological development, which is the key driving force for reducing emissions, and found energy intensity has a negative relationship with CO2 emission.    
 
+## 3.Methodology
 
+### 3.1 Data
 
+This research taking account of data availability, the panel data of 5 countries in ASEAN (i.e., Thailand, Indonesia, Vietnam, Malaysia, and Philippines) over period 1990-2015 are used to study. The data of `CO2 emission (kt)`, `Gross Domestic Product per capita (constant 2015 US$)`, `Industry value added per capita (constant 2015 US$)`, `Population (total)`, `Urban population (% of total population)`, and `Energy intensity level of primary energy (MJ/$2017 PPP GDP)` of Thailand, Indonesia, Vietnam, Malaysia, and Philippines were obtained from [World Bank](https://databank.worldbank.org/home). 
 
+### 3.2 Methodology
 
+#### 3.2.1 Theoretical Model
+
+In this section, the research has an objective to study the factors affect to CO2 emission in Thailand, Indonesia, Vietnam, Malaysia, and Philippines. By used theories concerned about environmental degradation called “IPAT”. This theory focuses on key human activities that influence environmental change that can help to explain the objective of research.
+
+However, the analysis of key human activities that influence environmental change by IPAT (Ehrlich and Holdren, 1971) is the model was purely a concept and cannot be used directly in empirical research (Chen et al., 2020). This research used the theory developed from IPAT for describe by mathematic, called the STIRPAT (Stochastic Impacts by Regression on Population, Affluence, and Technology) model (Dietz and Rosa, 1997) to study combined use to be analyzed with econometric models by fixed effect method. For studying the relationship of factors to CO2 emission in Thailand, Indonesia, Vietnam, Malaysia, and Philippines. The basic model is written follow:
+
+$$I=f(P,A,T)\tag{1}$$					 
+
+By specify where I represent the environmental impact, P represents population,        A represents affluence, and T represents technology. This research modifies appropriate for objective of study which can be expressed as:  
+
+I is the environmental impact or environmental degradation, measured by CO2 emission (CO2) because it constitutes the largest share of environmental degradation (Shaari et al., 2020).
+
+P is population which it can measure by total population and urbanization. In other word, total population (POP) and urbanization (URB) increase lead to an increased competition for environmental resources which lead to environmental degradation (Dietz and Rosa, 1997). 
+While total population can be measured by total population, urbanization can be measured by urban population.
+
+A is affluence. This research chooses variables by literature review for factors affecting CO2 emission, measured by income and industrial. In other words, affluence is a convenient abbreviation for consumption patterns and some measure of income as the indicator of affluence (Dietz and Rosa, 1997). Income can be proxy by gross domestic product per capita (GDP) because it is the usual measure of economic activity in IPAT models moreover, the relation environmental degradation depends on income increase (World bank, 1992). 
+Additionally, Industrial can illustrate affluence due to it shows terms of trade, export, import, stocks and in terms of production (Fischer-Kowalski et al., 2011). Undoubtedly, industrial can be proxy by industrial value added (IND) due to economic growth will increase energy demand, rising urbanization and industrialization will increase CO2 emission (Le and Quah, 2018; Saboori et al., 2017). 
+
+T is technology. Technology in this research chooses variables by literature review for factors affecting CO2 emission, which can be measured by energy intensity (ENE). In simple terms, if use less energy intensity that show technological development (Koçak et al., 2020). Additionally, energy intensity can be measured by energy intensity level of primary energy. If increased energy intensity level of primary energy, increases emissions due to global warming (Jones, 1991). From above mention, function of study can be expressed as:
+
+$$CO2=f(POP,URB,GDP,IND,ENE)\tag{2}	$$		 
+$$CO2= POP^{\beta_1} URB^{\beta_1} GDP^{\beta_3} IND^{\beta_4} ENE^{\beta_5} \tag{3}	$$	 
+This study predicts, population has a positive effect on CO2 emission (Anwar et al., 2020). Moreover, prediction of urbanization is positive effects on CO2 emission (Martinez-Zarzoso and Maruotti, 2011). Furthermore, prediction of GDP per capita and industry value added are a positive effect on CO2 emission (Le et al., 2020). Lastly, prediction of energy intensity is positive effect on CO2 emission (Cole and Neumayer, 2004).
+
+Equation that modifies explains the factors that affect CO2 emission in 5-ASEAN countries (i.e., Thailand, Indonesia, Vietnam, Malaysia, and Philippines). The variables in the Equation 3 are converted into logarithmic form because the STIRPAT model has to use logarithmic (Dietz and Rosa, 1997). as follows:
+
+$$
+\ln CO_{2_{it}} = \beta_0 + \beta_1 \ln POP_{it} + \beta_2 \ln URB_{it} + \beta_3 \ln GDP_{it} + \beta_4 \ln IND_{it} + \beta_5 \ln ENE_{it} + \varepsilon_{it} \tag{4}
+$$
+
+By specifying where $CO_{2_{it}}$ represent CO2 emission of Thailand, Indonesia, Vietnam, Malaysia, and Philippines in year t, $POP_{it}$ represent population of Thailand, Indonesia, Vietnam, Malaysia, and Philippines in year t, $URB_{it}$ represent the urban population of Thailand, Indonesia, Vietnam, Malaysia, and Philippines in year t, $GDP_{it}$ represent gross domestic product of Thailand, Indonesia, Vietnam, Malaysia, and Philippines in year t, $IND_{it}$ represent industrial value added of Thailand, Indonesia, Vietnam, Malaysia, and Philippines in year t, and $ENE_{it}$ represents energy intensity of Thailand, Indonesia, Vietnam, Malaysia, and Philippines in year t. $\beta_0$ represents a constant term, 1,2,3,4,5 are the estimated parameters, and  $\varepsilon_{it}$ is the error term in year t. i is the 5 countries in ASEAN (i.e., Thailand, Indonesia, Vietnam, Malaysia, and Philippines).  where t is time (t = 1,2,3,...,26) use panel data. 
