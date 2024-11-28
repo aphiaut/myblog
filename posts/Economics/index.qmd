@@ -22,7 +22,10 @@ The increase in CO2 emissions in ASEAN has tended to increase occasionally. In 2
 
 library(tidyverse)
 library(ggplot2)
+library(glmnet)
+library(knitr)
 
+set.seed(32735804)
 
 co2 <- read_csv("data/co2.csv")
 energy <- read_csv("data/energy.csv")
@@ -217,4 +220,279 @@ $$
 \ln CO_{2_{it}} = \beta_0 + \beta_1 \ln POP_{it} + \beta_2 \ln URB_{it} + \beta_3 \ln GDP_{it} + \beta_4 \ln IND_{it} + \beta_5 \ln ENE_{it} + \varepsilon_{it} \tag{4}
 $$
 
-By specifying where $CO_{2_{it}}$ represent CO2 emission of Thailand, Indonesia, Vietnam, Malaysia, and Philippines in year t, $POP_{it}$ represent population of Thailand, Indonesia, Vietnam, Malaysia, and Philippines in year t, $URB_{it}$ represent the urban population of Thailand, Indonesia, Vietnam, Malaysia, and Philippines in year t, $GDP_{it}$ represent gross domestic product of Thailand, Indonesia, Vietnam, Malaysia, and Philippines in year t, $IND_{it}$ represent industrial value added of Thailand, Indonesia, Vietnam, Malaysia, and Philippines in year t, and $ENE_{it}$ represents energy intensity of Thailand, Indonesia, Vietnam, Malaysia, and Philippines in year t. $\beta_0$ represents a constant term, 1,2,3,4,5 are the estimated parameters, and  $\varepsilon_{it}$ is the error term in year t. i is the 5 countries in ASEAN (i.e., Thailand, Indonesia, Vietnam, Malaysia, and Philippines).  where t is time (t = 1,2,3,...,26) use panel data. 
+By specifying where $CO_{2_{it}}$ represent CO2 emission of Thailand, Indonesia, Vietnam, Malaysia, and Philippines in year t, $POP_{it}$ represent population of Thailand, Indonesia, Vietnam, Malaysia, and Philippines in year t, $URB_{it}$ represent the urban population of Thailand, Indonesia, Vietnam, Malaysia, and Philippines in year t, $GDP_{it}$ represent gross domestic product of Thailand, Indonesia, Vietnam, Malaysia, and Philippines in year t, $IND_{it}$ represent industrial value added of Thailand, Indonesia, Vietnam, Malaysia, and Philippines in year t, and $ENE_{it}$ represents energy intensity of Thailand, Indonesia, Vietnam, Malaysia, and Philippines in year t. $\beta_0$ represents a constant term, 1,2,3,4,5 are the estimated parameters, and  $\varepsilon_{it}$ is the error term in year t. i is the 5 countries in ASEAN (i.e., Thailand, Indonesia, Vietnam, Malaysia, and Philippines).  where t is time (t = 1,2,3,...,26) use panel data. Estimated the equation by using Ridge Regression because predictors are strong correlation consequently, ridge regression is suitable for this issue.
+
+```{r}
+#| echo: false
+#| warning: false
+#| include: false
+
+library(faraway)
+library(lme4)
+
+
+# Rename the Value column in each dataset
+co2 <- co2 %>% rename(co2 = Value)
+energy <- energy %>% rename(ene = Value)
+gdp <- gdp %>% rename(gdp = Value)
+population <- population %>% rename(pop = Value)
+urban <- urban %>% rename(urb = Value)
+industry <- industry %>% rename(ind = Value)
+
+# Merge datasets one by one
+merged_data <- left_join(co2, energy, by = c("Country Name", "Country Code", "Year"))
+merged_data <- left_join(merged_data, gdp, by = c("Country Name", "Country Code", "Year"))
+merged_data <- left_join(merged_data, population, by = c("Country Name", "Country Code", "Year"))
+merged_data <- left_join(merged_data, urban, by = c("Country Name", "Country Code", "Year"))
+merged_data <- left_join(merged_data, industry, by = c("Country Name", "Country Code", "Year"))
+
+merged_data <- merged_data %>%
+  select(-starts_with("Variable")) %>%
+  filter(Year >= 2000)
+
+merged_data <- merged_data %>%
+  mutate(
+    ln_co2 = log(co2),
+    ln_ene = log(ene),
+    ln_gdp = log(gdp),
+    ln_pop = log(pop),
+    ln_urb = log(urb),
+    ln_ind = log(ind)
+  )
+
+
+```
+
+```{r}
+#| echo: false
+#| warning: false
+
+
+# Rename columns to remove backticks or fix names
+colnames(merged_data)[colnames(merged_data) == "Country Code"] <- "CountryCode"
+
+# Convert to proper types
+merged_data$CountryCode <- as.factor(merged_data$CountryCode)
+merged_data$Year <- as.numeric(merged_data$Year)
+
+# As we need to inspect correlations
+
+# Compute correlation matrix
+cor_matrix <- cor(merged_data[, c("ln_ene", "ln_gdp", "ln_pop", "ln_urb", "ln_ind")], use = "complete.obs")
+
+# Display the correlation matrix
+kable(cor_matrix, caption = "Correlation Matrix of Predictors")
+
+# We can see GDP and IND are strong correlation because they are higher than 0.8.
+```
+
+This matrix shows ln_gdp and ln_ind have a very strong correlation ($r = 0.969$), this indicates severe multicollinearity. While the other correlations are not as high as $r > 0.8$ , there are some moderate relationships.
+
+```{r}
+#| echo: false
+#| warning: false
+#| include: false
+
+
+# We will use Ridge Regression because it can fixed correlation issues.
+# Prepare data for Ridge Regression
+X <- model.matrix(ln_co2 ~ ln_ene + ln_gdp + ln_pop + ln_urb + ln_ind, data = merged_data)[, -1]
+y <- merged_data$co2
+
+# Fit Ridge Regression (alpha = 0 for Ridge)
+ridge_model <- glmnet(X, y, alpha = 0)
+
+# Cross-validate to find the best lambda
+cv_ridge <- cv.glmnet(X, y, alpha = 0)
+
+# Best lambda
+best_lambda <- cv_ridge$lambda.min
+
+# Fit the final Ridge Regression model with the best lambda
+final_ridge_model <- glmnet(X, y, alpha = 0, lambda = best_lambda)
+
+# View coefficients
+coef(final_ridge_model)
+
+# Predict using the final Ridge Regression model
+predictions <- predict(final_ridge_model, newx = X)
+
+# Calculate R-squared
+r_squared <- cor(y, predictions)^2
+print(r_squared)
+
+# Calculate MSE
+mse <- mean((y - predictions)^2)
+print(mse)
+
+
+# Extract and display coefficients
+ridge_coefficients <- coef(final_ridge_model)
+
+```
+
+## 4. Description and discussion of the results
+
+The result from study the factors affect the CO2 emission in 5-ASEAN countries. Expressed as analysis results.
+
+```{r}
+#| echo: false
+#| warning: false
+
+# Generate readable equation
+ridge_coefficients_df <- as.data.frame(as.matrix(ridge_coefficients))
+colnames(ridge_coefficients_df) <- "Coefficient"
+ridge_coefficients_df$Variable <- rownames(ridge_coefficients_df)
+ridge_coefficients_df <- ridge_coefficients_df[ridge_coefficients_df$Coefficient != 0, ]  # Keep non-zero coefficients
+
+
+# Select only Variable and Coefficient columns
+ridge_coefficients_clean <- ridge_coefficients_df[, c("Variable", "Coefficient")]
+
+# Remove row names and convert to a clean data frame
+ridge_coefficients_clean <- as.data.frame(ridge_coefficients_clean)
+rownames(ridge_coefficients_clean) <- NULL
+
+
+# Display the clean data frame
+kable(ridge_coefficients_clean, caption = "Ridge Regression Coefficients")
+
+```
+```{r}
+#| echo: false
+#| warning: false
+#| include: false
+
+# R-squared
+formatted_r_squared <- sprintf("R-squared = %.3f", r_squared)
+formatted_r_squared
+
+
+```
+The Ridge Regression model explains approximately $ R^2 = 0.932 $ of the variance in the dependent variable.
+
+The Ridge Regression model equation is expressed as follows:
+
+$$
+\ln(y) = -5032.85 + 107.62 \cdot \ln(ene) + 75.80 \cdot \ln(gdp) + 22.66 \cdot \ln(pop) - 3.37 \cdot \ln(urb) + 106.21 \cdot \ln(ind)
+$$
+
+The table illustrates the result regression of factors that affect CO2 emission in 5-ASEAN countries, including Thailand, Indonesia, Vietnam, Malaysia, and Philippines by 5 factors. 
+
+Overall, R-squares within is 0.9324 in other words, all factors can describe CO2 emission with 93.24% by ridge regression while 6.76% explained by other factors. 
+
+From the result, it can be seen that population has a positive effect on CO2 emission refer to when population increases 1 percent, will be CO2 emission increases 22.66 percent. This result matches the hypothesis, the relation of population with carbon emission is positive. Moreover, the result consist study with Mansoor and Sultana (2018) question Impact of Population, GDP and Energy Consumption on Carbon Emissions: Evidence from Pakistan Using an Analytic Tool IPAT, examined the impact of population on CO2 emissions is positive, which confirmed that high population growth put a burden on environment in the form of high mass CO2 emissions, hence this study suggests limiting the population by family planning process in a country. Furthermore, Guo and Yuan (2011) questioned the relationship between CO2 Emissions, Economic Scale, Technology, Income and Population in China by using the IPAT model to analyze, found the population is positive relation with CO2 emission.  
+
+Urbanization has a negative effect on CO2 emission that is urbanization increases 1 percent, will be CO2 emission reduce -3.37 percent. This result does not match the hypothesis, the relation of urbanization with carbon emission is positive. The result of study conflict with Yeh and Liao (2017), Le et al (2020), Martinez-Zarzoso and Maruotti (2011), and Shaari et al (2020) questioned the urbanization effect to carbon emission by using IPAT/STIRPAT tool to analyze, found the relation of urbanization with carbon emission is positive linear due to expansion of urbanization led to use more natural resource. Although, this result does not match hypothesis and other studies result, Martinez-Zarzoso and Maruotti (2011) found the same problem, urbanization is negative relation with carbon emission then this study used more sophisticated analysis to investigate this relationship in depth, investigated a  relationship between urbanization and CO2 emission is U-shaped thus this study suggests the problem are the data of urbanization in countries that studied do not appropriate with the IPAT model but appropriate with the EKC model. In conclusion, this reason might the cause studies to have different results.
+
+Gross domestic product has a positive effect on CO2 emission means when gross domestic product increases 1 percent, will be CO2 emission increase 75.80 percent. This result matches the hypothesis, the relation of gross domestic product with carbon emission is positive. Moreover, the result consist study with Yeh and Liao (2017) and Le et al (2020) questioned gross domestic product impact to carbon emission by using IPAT/STIRPAT tool to analyze, found the relation of gross domestic product with carbon emission is positive relation. While Giedre et al (2014), Le and Quah (2018), Husain (2016), and Neumayer (2002) investigate the positive relationship between GDP and carbon emission by using EKC model as well. On the contrary, Mansoor and Sultana (2018) investigate GDP per capita has negative affect on CO2 emission due to GDP enable country to reach the same production level at low CO2 emission by development of low-carbon technology. While this study focuses on 5-ASEAN countries by using panel data and using fixed effects to analyze, Mansoor and Sultana (2018) study focus on Pakistan by using time-serie data and use ARDL to analyze relation in long-run. In summary, this reason causes studies to have different results.
+
+Industrial value added has a positive effect on CO2 emission consists of when industrial value added increases 1 percent, will be CO2 emission increase 106.21 percent. This result matches the hypothesis, the relation of industrial value added with carbon emission is positive. Moreover, the result consists of study with Le et al (2020) surveyed industry has positive relation with CO2 emission. Although, Paramati et al (2016) examined developed economy countries that have negative relationships between industry and CO2 emission, developing economy countries have positive relationships based on the STIRPAT model. This is the reason to relates with the result of study due to 5-ASEAN countries such as Thailand, Indonesia, Vietnam, Malaysia, and Philippines are developing countries.
+
+Energy intensity has a positive effect on CO2 emission consists of when energy intensity increases 1 percent, will be CO2 emission increase 107.62 percent. This result matches the hypothesis, the relation of energy intensity with carbon emission is positive. Moreover, the result consist study with Talbi (2017) sounded energy consumption illustrate technology, moreover energy consumption measured by energy intensity, investigated energy intensity positive effects with CO2 emission in short run. Moreover, Le et al (2020) examined energy intensity has positive relation with CO2 emission. On the contrary, Koçak et al (2020) sounded the reduction in energy intensity represent technological development, found energy intensity has a negative relationship with CO2 emission. While, this study focuses on 5-ASEAN countries, Koçak et al (2020) study focus on top 10 most visited countries in 2017 which is most developed countries.  Moreover, developed countries have high technology to use less energy intensity consist study with Bilgili et al (2017) examined decreasing of energy intensity due to developed technology. To sum up, this reason causes studies to have different results.
+
+## 5. Conclusion
+
+The purpose of this study is factors affect CO2 emission in 5-ASEAN countries. From the result, the causes of CO2 emission in 5-ASEAN countries are population, urbanization, gross domestic product, industry, and energy intensity, affected to CO2 emission by the same direction while urbanization contrarily affects CO2 emission. Moreover, the results of this study illustrate the IPAT hypothesis, which can examine causes of environmental degradation to reflect environmental sustainability.
+
+The results suggest total factors affect CO2 emission. Although, the most factor effect CO2 emission is population, nobody can control about having children due to external factors that cannot control human thoughts and decisions. As the result, the government should dramatically support R&D of technology to develop technology for less CO2 emission due to developed technology can solve CO2 emission from GDP per capita and industrial. Furthermore, the government should announce the policy concerning carbon emission such as environmental tax for controlling the industries to cooperate with the government for use of low-carbon technology to reduce carbon emission.
+
+Suggestions for future research are using the IPAT model to analyze. Be careful the data of urbanization to analyze due to the relationship is maybe non-linear and the IPAT model has a problem about autocorrelation from theory thus the future research should find the way to solve this problem.  
+
+
+## References 
+
+Asean Cooperation on Environment. (n.d.). ASEAN Cooperation on Climate Change. Environment Division of the ASEAN Secretariat. Retrieved from https://environment.asean.org/awgcc/
+
+Bilgili, F., Koçak, E., Bulut, Ü., & Kuloğlu, A. (2017). The impact of urbanization on energy intensity: Panel data evidence considering cross-sectional dependence and heterogeneity. Energy, 133, 242-256.	
+
+Carson, R. T. (2010). The Environmental Kuznets Curve: Seeking Empirical Regularity and Theoretical Structure. Review of Environmental Economics and Policy, 4(1).
+
+Chen, Y., Lee, C., & Lee, C. (2020).  Does technological innovation reduce CO2 emission?Cross-country evidence. Journal of Cleaner Production, 263, 121550.
+
+Cole, M. A., & Neumayer, E. (2004). Examining the Impact of Demographic Factors on Air Pollution. Population and Environment, 26(1), 5–21.
+
+Dietz, T. & Rosa, E. A. (1994). Rethinking the Environmental Impacts of Population, Affluence and Technology, Human Ecology Review, 1, 277-300. 
+
+Dietz, T. & Rosa, E. A. (1997). Effect of population and affluence on CO2 emission, Ecology, 94, 175-179.  
+
+Dietz, T. & Rosa, E. A. (2007). Driving the human ecological footprint. Frontiers in Ecology and the Environment, 5(1), 13-18.
+
+Fischer-Kowalski, M., Krausmann, F., Giljum, S., Lutter, S., Mayer, A., Bringezu, S., … Weisz, H. (2011). Methodology and Indicators of Economy-wide Material Flow Accounting. Journal of Industrial Ecology, 15(6), 855-876.
+
+Giedre, L., Manuela, T. & Pranas, V. (2014). Greenhouse gases emissions and economic growth - evidence substantiating the presence of environmental Kuznets curve in the EU. Technological and Economic Development of Economy, 20(1), 65-78.   
+
+Grossman, G. M. & Krueger, A. (1995). Economic Growth and the Environment. The Quarterly Journal of Economics, 11(2), 353-377.
+
+Guo, H. & Jiang, Y. (2011). The Relationship between CO2 emissions, Economic Scale, Technology, Income and Population in China. Procedia Environmental Sciences, 11, 1183-1188.   
+
+Husain, S. (2016). Testing the long run relationship between CO2 emission, Energy consumption and Economics Growth for Bangladesh. An ARDL Bound Testing Approach. British Journal of Economics, Finance and Management Sciences, 12(2), 12-23. 
+
+Inmaculada, M., Inmaculada, Z. & Antonello M. (2011). The impact of urbanization on CO2 emissions: Evidence from developing countries. Ecological Economics, 70, 1344-1353.  
+
+Intergovernmental Panel on Climate Change. (2014) Climate Change 2014 Mitigation of Climate Change. New York, Cambridge University Press.
+Jones, D. W. (1991). How urbanization affects energy-use in developing countries. Energy Policy, 19(7), 621-630.
+Koçak, E., Ulucak, R., & Ulucak, Z. Ş. (2020). The impact of tourism developments on CO2 emission: An advanced panel data estimation. Tourism Management Perspectives, 33, 100611.   
+
+Le, T.-H., Le, H.-C., & Taghizadeh-Hesary, F. (2020). Does financial inclusion impact CO2 emission? Evidence from Asia. Finance Research Letters, 34, 10145. 
+
+Le, T. & Quah, E. (2018). Income level and the emission, energy, and growth nexus: Evidence from Asia and the Pacific. International Economics, 156, 193-205. 
+
+Lin, S., Zhao, D. & Marinova, A. (2009). Analysis of the environmental impact of China based on STIRPAT model. Environmental Impact Assessment Review, 29, 341-347.
+
+Luukkanen, J. & Kaivo-oja, J. (2002). ASEAN tigers and sustainability of energy use-decomposition analysis of energy and CO2 efficiency dynamics. Energy Policy, 30(4), 281-292 
+
+Majeed, M. T. & Tauqir, A. (2020). Effects of Urbanization, Industrialization, Economic Growth, Energy Consumption and Financial Development on Carbon Emission: An Extended STIRPAT Model for Heterogenous Income Groups. Pakistan Journal of Commerce and Social Sciences, 14(3), 652-681.
+
+Mansoor, A. & Sultana, B. (2018). Impact of Population, GDP and Energy Consumption on Carbon Emission: Evidence from Pakistan Using and Analytic Tool IPAT. Asian Journal of Economics and Empirical Research, 5(2), 183-190.         
+
+Martínez-Zarzoso, I., & Maruotti, A. (2011). The impact of urbanization on CO2 emissions: Evidence from developing countries. Ecological Economics, 70(7), 1344-1353.
+
+Meangbua, O., Dhakal, S., & Kuwornu, J. K. M. (2019). Factors influencing energy requirements and CO2 emissions of households in Thailand: A panel data analysis. Energy Policy, 129, 521–531.
+
+Mills, J.H., & Wate, T. A. (2009). Economic prosperity, biodiversity conservation, and the environmental Kuznets curve. Ecological Economics, 68(7), 2087-2095.
+
+Munir, Q., Lean, H. H., Smyth, R. (2020). Co2 emissions, energy consumption and economic growth in the ASEAN-5 countries: A cross-sectional dependence approach. Energy Economics, 85, 104571.	
+
+Neumayer, E. (2002). Can natural factors explain any cross-country difference in carbon dioxide emissions?. Energy Policy, 30, 7-12.         
+
+Nordin, S. K. S., Samat, K. F., Ismail, S. F., Hamzah, K., Halim, B. A., & Kun, S. S. (2015). Determinants of CO2 emissions in ASEAN countries using energy and mining indicators. AIP Conference Proceeding, 1660(1).
+
+Paramati, S. R., Alam, Md. S. & Chen, C. (2016). The Effects of Tourism on Economic Growth and CO2 Emission: A Comparison between Developed and Developing Economies. Journal of Travel Research, 56(6), 712-724.  	
+
+Pual, R. E. & John, P.H. (1971). Impact of Population Growth. Science, 171(3977), 1212-1217.       	
+
+Rabiul, I., Ahmad, B. A. G., & Emil, M. (2017). Carbon Dioxide Emission, Energy Consumption, Economic Growth, Population, Poverty and Forest Area: Evidence from Panel Data Analysis. International Journal of Energy Economics and Policy, 7(4), 99-106.                
+
+Rahman, A., Murad, S. M. W., Ahmad, F., & Wang, X. (2020). Evaluating the EKC Hypothesis for the BCIM-EC Member Countries under the Belt and Road Initiative. Sustainability, 12(4), 1478.
+
+Saboori, B., Rasoulinezhad, E., & Sung, J. (2017). The nexus of oil consumption, CO2 emissions and economic growth in China, Japan and South Korea. Environmental Science and Pollution Research, 24(8), 7436-7455. 
+
+Shaari, M. S., Karim, Z. A., & Abidin, N. Z. (2020). The effects of Energy Consumption and National Output on CO2 emissions: New Evidence from OIC Countries Using a Panel ARDL Analysis. sustainability, 12, 3312. 
+
+Shafik, N. (1994). Economic Development And Environmental Quality: An Econometric Analysis. Oxford Economic Paper, 46, 757-773.         	
+
+Stern, D. I. (2004). The rise and fall of the environmental Kuznets curve. World Development, 32, 1419-1439. 
+
+Stern, P. C. (1993). A Second Environmental Science: Human-Environment Interactions. Science, 260(5116), 1897-1899.
+
+Sulaiman, C. & Abdul-Rahim, A. S. (2018). Population Growth and CO2 emission in Nigeria: A Recursive ARDL Approach. SAGE Open, 8(2), 215824401876591. 
+
+Talbi, B. (2017). CO2 emission reduction in road transport sector in Tunisia. Renewable and Sustainable Energy Reviews, 69, 232-238.     
+
+The Global Carbon Atlas. CO2 emission in ASEAN during 1960 to 2018. Retrieved from http://www.globalcarbonatlas.org/en/CO2-emissions	
+
+Wolde-Rufael, Y. & Idowu, S. (2017). Income distribution and CO2 emission: A comparative analysis for China and India. Renewable and Sustainable Energy Reviews, 74, 1336-1345.     	
+
+World Bank Indicators. (1992). World Development Report Development and the Environment. World Bank.  Retrieved from http://documents1.worldbank.org/curated/en/995041468
+323374213/pdf/105170REPLACEMENT0WDR01992.pdf
+
+Xu, X. Y. & Ang, B. W. (2013). Index decomposition analysis applied to CO2 emission studies. Ecological Economics, 93, 313-329.  
+
+Yeh, J. & L, C. (2017). Impact of population and economic growth on carbon emission in Taiwan using and analytic tool STIRPAT. Sustainable Environment Research, 27, 41-48.    	
+
+York, R., Rosa, E. A., & Dietz, T. (2003). STIRPAT, IPAT and ImPACT: analytic tools for unpacking the driving forces of environmental impacts. Ecological Economics, 46, 351-365.    	
+
+Zhang, X. & Cheng, X. (2009). Energy consumption, carbon emission, and economic growth in China. Ecological Economics, 68, 2706-2712.  
+
+

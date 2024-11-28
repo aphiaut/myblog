@@ -1,12 +1,115 @@
 ---
-title: "Welcome To My Blog"
-author: "Tristan O'Malley"
+title: "My favorite anime list"
+author: "Aphiaut Imuan"
 date: "2024-11-21"
-categories: [news]
+categories: [Anime]
+image: "slime.jpg"
 ---
 
-This is the first post in a Quarto blog. Welcome!
+I will share anime that I have watched since I was young, and I think I love it.
 
-![](thumbnail.jpg)
+## Fantasy
 
-Since this post doesn't specify an explicit `image`, the first image in the post will be used in the listing page of posts.
+That Time I Got Reincarnated as a Slime
+
+![](slime.jpg){width="460"}
+
+Fairy Tail
+
+![](fairytail.jpg){width="460"}
+
+Sword Art Online
+
+![](sao.jpg){width="1145"}
+
+Log Horizon
+
+![](loghorizon.jpg){width="1209"}
+
+## Fun
+
+Snow White with the Red Hair
+
+![](redhair.jpg){width="1209"}
+
+Maoyuu Maou Yuusha (Maoyu: Archenemy & Hero)
+
+![](maoyu.jpg){width="1208"}
+
+Conan
+
+![](conan.jpg){width="460"}
+
+Doraemon
+
+![](doraemon.jpg){width="1211"}
+
+Tom and Jerry
+
+![](tomandjerry.jpg){width="460"}
+
+Spy x Family
+
+![](spyxfamily.jpg){width="460"}
+
+## Kamen Rider Series
+
+Kamen Rider Kuuga
+
+![](kuuga.jpg){width="517"}
+
+Kamen Rider 555
+
+![](555.jpg){width="517"}
+
+Kamen Rider Den-O
+
+![](deno.jpg){width="460"}
+
+Kamen Rider OOO
+
+![](ooo.jpg){width="1209"}
+
+Kamen Rider Wizard
+
+![](wizard.jpg){width="460"}
+
+Kamen Rider Drive
+
+![](drive.jpg){width="680"}
+
+Kamen Rider Zi-O
+
+![](zio.jpg){width="460"}
+
+To be honest, I love Geiz more than Zio hahaha.
+
+![](geiz.jpg)
+
+Kamen Rider Zero-One
+
+![](zeroone-01.jpg){width="904"}
+
+## Ultraman
+
+I like all Ultraman
+
+![](all_ultraman.jpg){width="949"}
+
+## Super Sentai (Power Ranger)
+
+I didn't follow them for long time so it will have less than other series.
+
+Megaranger
+
+Gingaman
+
+Gaoranger
+
+Hurricaneger
+
+Abaranger
+
+Dekaranger
+
+Magiranger
