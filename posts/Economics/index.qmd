@@ -374,7 +374,7 @@ The Ridge Regression model explains approximately $ R^2 = 0.932 $ of the varianc
 The Ridge Regression model equation is expressed as follows:
 
 $$
-\ln(y) = -5032.85 + 107.62 \cdot \ln(ene) + 75.80 \cdot \ln(gdp) + 22.66 \cdot \ln(pop) - 3.37 \cdot \ln(urb) + 106.21 \cdot \ln(ind)
+\ln(y) = -5032.85 + 22.66 \cdot \ln(pop) - 3.37 \cdot \ln(urb) + 75.80 \cdot \ln(gdp)  + 106.21 \cdot \ln(ind) + 107.62 \cdot \ln(ene) \tag{5}
 $$
 
 The table illustrates the result regression of factors that affect CO2 emission in 5-ASEAN countries, including Thailand, Indonesia, Vietnam, Malaysia, and Philippines by 5 factors. 
