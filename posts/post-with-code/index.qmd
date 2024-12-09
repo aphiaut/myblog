@@ -16,4 +16,6 @@ Hello Guys. I don't have any idea yet.
 2+2
 ```
 
-$ I Love U $
+\$ I Love U \$
+
+\$ I wanna watch K-drama \$
