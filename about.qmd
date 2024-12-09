@@ -1,0 +1,48 @@
+---
+title: "Aphiaut Imuan (Auggie)"
+image: profile.jpg
+about:
+  template: trestles
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://x.com/usimu13
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/aphiautimuan/
+    - icon: github
+      text: Github
+      href: https://github.com/aphiaut
+---
+
+```{r}
+#| echo: false
+#| include: false
+
+library(emo)
+```
+
+::: {#hero-heading}
+Hello guys!!! My name is Aphiaut Imuan, you can call me Auggie. I'm a little cute Thai guy. I hope you will kind to me and happy with my blog. `r emo::ji("smile")`
+
+## Education
+
+Monash University \| Melbourne, Australia\
+Master of Business Analytics\
+March 2022 - June 2024
+
+Maejo University \| Chiang Mai, Thailand\
+Bachelor of Economics (International Economics)\
+June 2018 - April 2021
+
+## Experiences
+
+Empire Hospitality Australia Pty Ltd \| Room Attendance (Turndown Service)\
+December 2022 - Present
+
+Monash University & Alfred Health \| Research Assistance\
+August 2023 - October 2024
+
+Muang Thai Life Assurance Public Company Limited \| Life Planner\
+June 2021 - January 2022
+:::

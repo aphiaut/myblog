@@ -1,0 +1,19 @@
+---
+title: "Post With Code"
+author: "Auggie Imuan"
+date: "2024-11-24"
+categories: [news, code, analysis]
+image: "image.jpg"
+---
+
+Hello Guys. I don't have any idea yet.
+
+```{r}
+1 + 1
+```
+
+```{r}
+2+2
+```
+
+$ I Love U $
