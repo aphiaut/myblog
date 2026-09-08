@@ -1,1 +1,39 @@
-/* css styles */
+/* Shared layout. Article colours are selected with body-classes in each QMD. */
+:root { --article-accent: #376d58; --article-soft: #e5f1e8; }
+body.post-water { --article-accent: #285d7b; --article-soft: #e4f0f7; }
+body.post-culture { --article-accent: #715082; --article-soft: #f0e8f5; }
+body.post-economics { --article-accent: #426854; --article-soft: #e5efe2; }
+body { line-height: 1.8; }
+#quarto-content { padding-top: 1.5rem; }
+.quarto-title-banner { background: var(--article-soft); color: #243d35; padding-block: 3rem; }
+.quarto-title-banner h1 { max-width: 950px; font-size: clamp(2.1rem, 5vw, 3.4rem); line-height: 1.13; }
+.quarto-title-banner .quarto-category { color: var(--article-accent); border-color: var(--article-accent); }
+main h2 { color: var(--article-accent); margin-top: 2.4rem; }
+main p a { color: var(--article-accent); }
+#title-block-header .description { max-width: 48rem; font-size: 1.15rem; }
+.quarto-title-meta { padding-block: 1rem; border-bottom: 1px solid #dce7df; }
+.quarto-listing { margin-top: 1.5rem; }
+.quarto-grid-item { border: 1px solid #dce7df; border-radius: 16px; overflow: hidden; background: white; transition: box-shadow .2s; }
+.quarto-grid-item:hover { box-shadow: 0 8px 26px #244b3514; }
+.quarto-grid-item .card-title { font-family: Georgia, serif; font-size: 1.45rem; line-height: 1.3; }
+.quarto-grid-item .card-img-top { margin: 0; overflow: hidden; }
+.quarto-grid-item .card-img { width: 100%; object-fit: cover; }
+.quarto-grid-item .card-body { padding: 1.4rem; }
+.quarto-grid-item .listing-description { font-size: 1rem; }
+.quarto-grid-item .listing-category { color: #376d58; }
+.listing-category, .quarto-category { border-radius: 20px; }
+.home-intro { max-width: 48rem; margin: 1rem 0 2.5rem; font-size: 1.18rem; }
+.home-intro p:first-child { color: #376d58; font-size: .85rem; letter-spacing: .13em; text-transform: uppercase; font-weight: 700; }
+.cell-output-display img, .quarto-figure img { border-radius: 10px; }
+pre.sourceCode { border: 1px solid #dce7df; border-radius: 10px; padding: 1rem; }
+details > summary { color: var(--article-accent); font-weight: 600; }
+blockquote { border-left: 3px solid var(--article-accent); background: var(--article-soft); padding: 1rem 1.4rem; }
+.about-image { border: 8px solid #e5f1e8; }
+.nav-footer { border-top: 1px solid #dce7df; margin-top: 3rem; }
+a:focus-visible, summary:focus-visible, button:focus-visible { outline: 3px solid #b97d28; outline-offset: 4px; }
+@media (max-width: 767px) {
+  .quarto-title-banner { padding-block: 2rem; }
+
+  body { font-size: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
