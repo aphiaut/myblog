@@ -1,20 +1,26 @@
 ---
-title: "Water Quality"
+title: "Reading Sydney's Water Quality"
+description: "A reproducible R exploration of swimming-site samples, monthly variation, and the importance of missing data."
 author: "Auggie Imuan"
-date: "2024-11-24"
-categories: [news, code, analysis]
+date: "2025-05-20"
+categories: [R, Environment, TidyTuesday]
 image: "image.jpg"
+body-classes: post-water
 ---
 
-```{r}
-#| echo: false
-#| warning: false
-#| include: false
-library(tidyverse)
-library(strayr)
-library(sf)
-library(lubridate)
-```
+Water-quality data looks simple at first. There is a place, a date, and a measurement. But once I started exploring this dataset, I realised that the numbers were not quite as straightforward as they seemed.
+
+A high average, for example, does not necessarily mean that every sample from a site was high. It could be the result of just one unusually large measurement. Missing values also need some care: a measurement that was never recorded is very different from a recorded value of zero.
+
+In this post, I use R to explore where samples were collected around Sydney, take a closer look at site measurements during April 2024, and then step back to see how the distribution has changed over time.
+
+## About the data
+
+The data comes from the [TidyTuesday release of 20 May 2025](https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-05-20), based on monitoring data from NSW Beachwatch.
+
+For this exploration, I focus on **enterococci**, measured in colony-forming units per 100 mL (CFU / 100 mL).
+
+Before doing any comparisons, I removed records without a valid date or enterococci measurement, as well as negative measurements. I kept genuine zero measurements, because zero is still an observed value.
 
 ```{r}
 #| eval: false
@@ -27,117 +33,233 @@ lgas <- strayr::read_absmap(area = "lga", year = 2022) %>%
 save(lgas, file="data/lgas.rda")
 ```
 
-# NSW map
+```{r}
+#| label: setup
+
+library(tidyverse)
+library(lubridate)
+library(sf)
+
+water_quality <- read_csv("data/water_quality.csv", show_col_types = FALSE) |>
+  mutate(date = as.Date(date))
+
+theme_set(theme_minimal(base_size = 12) +
+  theme(panel.grid.minor = element_blank(),
+        plot.title = element_text(face = "bold", colour = "#285d7b"),
+        plot.background = element_rect(fill = "#fbfdff", colour = NA)))
+
+valid <- water_quality |>
+  filter(!is.na(date), !is.na(enterococci_cfu_100ml),
+         enterococci_cfu_100ml >= 0)
+
+coverage <- tibble(
+  Measure = c("Rows in source", "Rows with a valid date and non-negative measurement",
+              "Distinct council / site pairs", "First sample", "Last sample"),
+  Value = c(nrow(water_quality), nrow(valid),
+            nrow(distinct(valid, council, swim_site)),
+            as.character(min(valid$date)), as.character(max(valid$date)))
+)
+knitr::kable(coverage, caption = "Coverage of the downloaded snapshot")
+```
+
+There are **123,530 rows** in the original dataset. After removing records without a usable date or measurement, **123,223 observations** remain. These represent **79 council–site combinations**, with samples stretching from September 1991 to April 2025.
+
+One detail is especially important for the rest of the analysis: I leave missing measurements as missing. I do not turn them into zero. A zero means that a measurement was actually recorded as zero; a missing value means that there is no measurement to summarise.
+
+This is historical monitoring data, so the results here describe the downloaded dataset rather than current swimming conditions.
+
+## Where were samples collected?
+
+Before looking at the measurements themselves, I wanted to see where the observations actually came from.
+
+
 
 ```{r}
-#| echo: false
-#| warning: false
-
+#| label: fig-sites
+#| fig-cap: "Sampling coordinates in the source data. This is a location plot, without a coastline basemap."
+#| fig-alt: "Scatter plot of swimming-site longitude and latitude, showing the geographic coverage of monitoring locations."
+#| fig-width: 8
+#| fig-height: 5
+sites <- water_quality |>
+  distinct(council, swim_site, latitude, longitude) |>
+  drop_na(latitude, longitude)
 
 load("data/lgas.rda")
 lgas <- lgas %>% na.omit()
 nsw_map <- ggplot(lgas) +
   geom_sf(fill=NA, colour="grey80",fill = "white")
-nsw_map +
-  coord_sf(xlim = c(140.5, 154), ylim = c(-38, -28), expand = FALSE)
-```
 
-## Water Quality at Sydney
-
-```{r}
-#| echo: false
-#| warning: false
-#| include: false
-#| 
-water_quality <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-05-20/water_quality.csv')
-weather <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-05-20/weather.csv')
-
-```
-
-```{r}
-#| echo: false
-#| warning: false
-# water quality map
-
-nsw_swim <- water_quality %>% 
-  select(swim_site, latitude, longitude)
 
 nsw_map +
-  coord_sf(xlim = c(150, 151.5), ylim = c(-34.2, -33.4), expand = FALSE) +  
-  geom_point(data=nsw_swim, aes(x=longitude,
+  coord_sf(xlim = c(150, 151.5), ylim = c(-34.2, -33.4), expand = FALSE) + 
+  geom_point(data=sites, aes(x=longitude,
                                 y=latitude, group=NA),
-             colour="blue", alpha=0.5, size = 0.5)
+             colour = "#377ca0", alpha = 0.65, size = 1.8) +
+  
+  labs(title = "The geography of the samples", x = "Longitude", y = "Latitude")
 ```
 
-# Water Quality Heatmap
+The sampling locations are clearly concentrated around Sydney's coast and harbour. There are also a handful of sites further inland, but the eastern side of the map contains most of the observations.
 
-[Microbial Assessment Category (MAC)](https://www.environment.nsw.gov.au/resources/beach/bwar14/SOB2014HowtoRead.pdf)
+This is useful context for everything that follows. The dataset represents a network of monitored locations rather than every possible swimming site across Sydney. Areas without points on the map should therefore be read as places that are not represented here, not places where the water necessarily had lower measurements.
 
-```{r}
-#| echo: false
-#| warning: false
-enterococci_rank <- water_quality %>%
-  filter(lubridate::month(date) == 4, lubridate::year(date) == 2024) %>%
-  group_by(council, swim_site) %>%
-  summarise(avg_cfu = mean(enterococci_cfu_100ml, na.rm = TRUE), .groups = "drop") %>%
-  arrange(desc(avg_cfu))
+**Figure 1.** Locations represented in the water-quality data. Most monitoring sites are concentrated around Sydney's coastline and harbour.
 
-# use enterococci > 40 as it's in categories over B
+## Which sites stood out in April 2024?
 
-enterococci_matrix <- enterococci_rank %>%
-  filter(avg_cfu > 40) %>%
-  pivot_wider(
-    names_from = swim_site, 
-    values_from = avg_cfu,
-    values_fill = list(avg_cfu = 0)
-  )
-
-
-rn_matrix <- enterococci_matrix$council
-enterococci_matrix <- as.matrix(enterococci_matrix[,-1])
-rownames(enterococci_matrix) <- rn_matrix
-
-library(heatmaply)
-heatmaply(
-  enterococci_matrix,
-  showticklabels = FALSE,
-  show_dendrogram = FALSE,
-  xlab = "Beach/Swimming location",
-  ylab = "City council",
-  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
-    high = "red")
-)
-
-```
-
+With more than three decades of data, comparing every site across the full time period would quickly become difficult to interpret. Instead, I picked **April 2024** as a snapshot and calculated the average enterococci measurement for each site during that month.
 
 
 ```{r}
-#| echo: false
-#| warning: false
-library(pheatmap)
-
-pheatmap(
-  enterococci_matrix,
-  cluster_rows = FALSE,
-  cluster_cols = FALSE,
-  color = colorRampPalette(c("white", "yellow", "red"))(100),
-  main = "Enterococci CFU > 40 (April 2024)",
-  fontsize_row = 8,
-  fontsize_col = 8
-)
-
+#| label: april-summary
+april <- valid |>
+  filter(date >= as.Date("2024-04-01"), date < as.Date("2024-05-01")) |>
+  group_by(council, swim_site) |>
+  summarise(samples = n(), mean_cfu = mean(enterococci_cfu_100ml),
+            median_cfu = median(enterococci_cfu_100ml),
+            max_cfu = max(enterococci_cfu_100ml), .groups = "drop") |>
+  arrange(desc(mean_cfu))
+stopifnot(nrow(april) > 0)
+top_sites <- april |>
+  slice_head(n = 15) |>
+  mutate(site_label = paste(swim_site, council, sep = " · "))
 ```
+
+```{r}
+#| label: fig-april
+#| fig-cap: "The 15 highest site means in April 2024. Labels show the number of valid samples contributing to each mean."
+#| fig-alt: "Horizontal bar chart comparing mean enterococci measurements for 15 swimming sites, with sample counts beside the bars."
+#| fig-width: 10
+#| fig-height: 7
+
+ggplot(top_sites, aes(mean_cfu, reorder(site_label, mean_cfu))) +
+  geom_col(fill = "#91c7da", width = 0.7) +
+  geom_text(aes(label = paste0("n = ", samples)), hjust = -0.12, size = 3.2) +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.18))) +
+  labs(title = "A monthly snapshot, not a permanent ranking",
+       x = "Mean enterococci (CFU / 100 mL)", y = NULL)
+```
+
+A few sites immediately stand out.
+
+**Bilarong Reserve** has the highest mean in this snapshot, at about **406 CFU / 100 mL**. **Queenscliff Beach** follows at roughly **235**, while **Tamarama Beach** and **Darling Harbour** also have noticeably higher means than most of the other sites shown.
+
+But the small labels beside the bars are just as important as the bars themselves.
+
+Most of these averages are based on only **five or six samples**. That makes the chart useful for understanding what happened during April 2024, but it would be misleading to treat it as a permanent ranking of the sites.
+
+It is better thought of as a snapshot: these are the sites with the highest recorded averages **during this particular month**.
+
+**Figure 2.** Sites with the highest mean enterococci measurements in April 2024. Each label shows how many valid samples contributed to the monthly average.
+
+## What is hiding behind the average?
+
+The April chart raised another question for me.
+
+Bilarong Reserve had a mean of 406. Does that mean its individual measurements were consistently around 400?
+
+Not quite.
+
+Looking at the mean alongside the median and maximum gives a much better picture of what happened within the month.
+
+```{r}
+#| label: site-table
+april |>
+  slice_head(n = 10) |>
+  select(Council = council, Site = swim_site, Samples = samples,
+         Mean = mean_cfu, Median = median_cfu, Maximum = max_cfu) |>
+  knitr::kable(digits = 1, caption = "Sample counts and distribution summaries for the ten highest means")
+```
+
+For **Bilarong Reserve**, the mean is **406**, but the median is **200** and the maximum reaches **1,100 CFU / 100 mL**.
+
+The difference is even more striking at **Queenscliff Beach**. Its mean is about **235**, but its median is only **30**, while the highest measurement is **700**.
+
+**Tamarama Beach** tells a similar story: a mean of roughly **175**, a median of **23.5**, and a maximum of **960**.
+
+These are very different descriptions of the same data.
+
+The mean is being pulled upward by relatively large observations, while the median tells us that a typical sample during the month was much lower. That does not make the mean incorrect; it simply shows why I would not want to interpret it on its own.
+
+For these sites, the **sample count, mean, median, and maximum together** tell a much more useful story than a single average.
+
+## Missing does not mean zero
+
+There was another issue I had to think about while working with this dataset.
+
+Each swimming site belongs to a particular council. This means that many theoretical council–site combinations simply do not exist.
+
+If I created a complete council-by-site grid and filled all of those empty combinations with zero, the resulting chart would look complete, but it would quietly introduce information that was never observed.
+
+A blank combination does not mean:
+
+> enterococci = 0
+
+It means:
+
+> there is no observation for that combination.
+
+That distinction is why I keep missing combinations as missing and compare the observed sites directly instead.
+
+It is a small data-cleaning decision, but it changes the meaning of the result.
+
+## How have measurements varied over time?
+
+After looking closely at one month, I wanted to zoom back out.
+
+Instead of following individual sites, I summarised the recorded measurements within each month from 2000 onward. The dark line shows the **monthly median**, while the shaded area represents the **interquartile range**, or the middle 50% of observations.
 
 
 ```{r}
-clean_enterococci <- water_quality %>% 
-  filter(!is.na(enterococci_cfu_100ml)) 
-max(clean_enterococci$enterococci_cfu_100ml)
+#| label: fig-monthly
+#| fig-cap: "Median and interquartile range of recorded measurements within each month since 2000; changing site coverage can affect this pooled summary."
+#| fig-alt: "Time-series chart with a monthly median line and a shaded interval from the 25th to 75th percentile."
+#| fig-width: 9
+#| fig-height: 4.5
+monthly <- valid |>
+  filter(year(date) >= 2000) |>
+  mutate(month = floor_date(date, "month")) |>
+  group_by(month) |>
+  summarise(median_cfu = median(enterococci_cfu_100ml),
+            q25 = quantile(enterococci_cfu_100ml, 0.25),
+            q75 = quantile(enterococci_cfu_100ml, 0.75),
+            samples = n(), .groups = "drop")
 
-ggplot(clean_enterococci %>% 
-         filter(lubridate::year(date) >= 2000)) +
-  geom_point(aes(x = date, y = enterococci_cfu_100ml))
-
+ggplot(monthly, aes(month, median_cfu)) +
+  geom_ribbon(aes(ymin = q25, ymax = q75), fill = "#c5e3ed") +
+  geom_line(colour = "#285d7b", linewidth = 0.6) +
+  labs(title = "The centre of the distribution — and its spread",
+       x = NULL, y = "Enterococci (CFU / 100 mL)")
 ```
 
+Most of the time, the median stays relatively low. The spread around it, however, is much less consistent.
+
+Some months have a narrow band, meaning that the middle half of the observations were fairly similar. In other months, the band becomes much wider, showing that measurements varied considerably across the samples recorded during that period.
+
+There is a particularly large spread near the beginning of the series, followed by smaller but still noticeable spikes throughout later years.
+
+I would be careful about reading this as a simple story of water quality getting better or worse over time. The monitoring network itself may have changed: different sites may have entered or left the dataset, and sampling frequency may not have remained constant.
+
+What the chart does show clearly is that the **typical measurement and the variability around it are two different things**. The median can remain fairly stable even during months when some observations are much higher than others.
+
+**Figure 3.** Monthly median enterococci measurements since 2000. The shaded band shows the interquartile range and highlights periods when the recorded measurements were more variable.
+
+## What I took away from this analysis
+
+I started with what seemed like a fairly simple dataset and an equally simple question: **which sites had the highest measurements?**
+
+By the end, that was probably the least interesting question.
+
+The April snapshot showed how easily an average can be influenced by a small number of high observations. Comparing the mean with the median and maximum made that much clearer. Looking at the data over time showed something similar: a relatively stable centre can exist alongside periods of much greater variation.
+
+The missing values were another useful reminder. Filling an empty space with zero may make a table or heatmap easier to build, but it can also give that empty space a meaning it never had.
+
+The biggest lesson for me was simple: before interpreting a summary statistic, I need to understand **what observations went into it**.
+
+Sometimes the most useful part of an analysis is not finding the highest bar on the chart. It is figuring out why that bar is high in the first place.
+
+## Tools
+
+This analysis was created in **R** with `tidyverse`, `lubridate`, `sf` packages, and lga 2022 map.
+
+Data source: [TidyTuesday — 20 May 2025](https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-05-20).

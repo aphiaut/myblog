@@ -1,26 +1,45 @@
 project:
   type: website
+  render:
+    - index.qmd
+    - about.qmd
+    - posts/**/*.qmd
 
 website:
-  title: "Home"
+  title: "Us's Notes"
+  site-url: https://aphiaut.github.io/myblog/
+  description: "Notes on data, economics, and the things I enjoy, by Us Imuan."
   navbar:
+    background: light
     right:
-      - text: ABOUT
+      - text: Blog
+        href: index.qmd
+      - text: About
         href: about.qmd
       - text: CV
         href: CV.pdf
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/aphiaut
+        aria-label: Auggie on GitHub
+  page-footer:
+    left: "Us Imuan · Data & everyday discoveries"
+    right: " "
 
 format:
   html:
-    theme: Sketchy
+    lang: en
+    theme: [cosmo, theme.scss]
     css: styles.css
+    toc: true
+    toc-title: On this page
+    code-fold: true
+    code-summary: Show R code
+    code-copy: true
+    code-overflow: wrap
+    link-external-newwindow: true
 
-editor: visual
-
+editor: source
 execute:
   freeze: auto
-
+  warning: false
+  message: false

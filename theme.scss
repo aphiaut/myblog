@@ -1,0 +1,18 @@
+/*-- scss:defaults --*/
+$body-bg: #fbfdfb;
+$body-color: #243d35;
+$primary: #376d58;
+$link-color: #32694f;
+$navbar-bg: #e5f1e8;
+$navbar-fg: #243d35;
+$font-family-sans-serif: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+$headings-font-family: Georgia, "Times New Roman", serif;
+$font-size-base: 1.05rem;
+$headings-font-weight: 500;
+$code-bg: #edf3ee;
+$code-color: #315d49;
+/*-- scss:rules --*/
+.navbar { border-bottom: 1px solid #d3e4d7; padding-block: 1rem; }
+.navbar-brand { font-family: Georgia, serif; font-size: 1.5rem; }
+h1, h2, h3 { letter-spacing: -.025em; }
+a { text-underline-offset: .2em; }

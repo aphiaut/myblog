@@ -1,5 +1,5 @@
 ---
-title: "Aphiaut Imuan (Auggie)"
+title: "Aphiaut Imuan (Us)"
 image: profile.jpg
 about:
   template: trestles
@@ -37,8 +37,11 @@ June 2018 - April 2021
 
 ## Experiences
 
-Empire Hospitality Australia Pty Ltd \| Room Attendance (Turndown Service)\
-December 2022 - Present
+Srinagarind Hospital \| Volunteer Data Analyst\
+Jan 2025 - Present
+
+W Melbourne, Pullman Hotel & D'elephant Thai Richmond (Australia) \| Room Hospitality Roles (Part-time)\
+December Mar 2022 - Jul 2026
 
 Monash University & Alfred Health \| Research Assistance\
 August 2023 - October 2024
