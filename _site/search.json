@@ -1,24 +1,45 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Aphiaut Imuan (Us)",
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "My favorite anime list",
     "section": "",
-    "text": "Hello guys!!! My name is Aphiaut Imuan, you can call me Auggie. I’m a little cute Thai guy. I hope you will kind to me and happy with my blog. 😄\n\n\nMonash University | Melbourne, Australia\nMaster of Business Analytics\nMarch 2022 - June 2024\nMaejo University | Chiang Mai, Thailand\nBachelor of Economics (International Economics)\nJune 2018 - April 2021\n\n\n\nSrinagarind Hospital | Volunteer Data Analyst\nJan 2025 - Present\nW Melbourne, Pullman Hotel & D’elephant Thai Richmond (Australia) | Room Hospitality Roles (Part-time)\nDecember Mar 2022 - Jul 2026\nMonash University & Alfred Health | Research Assistance\nAugust 2023 - October 2024\nMuang Thai Life Assurance Public Company Limited | Life Planner\nJune 2021 - January 2022"
+    "text": "I will share anime that I have watched since I was young, and I think I love it."
   },
   {
-    "objectID": "about.html#education",
-    "href": "about.html#education",
-    "title": "Aphiaut Imuan (Us)",
-    "section": "",
-    "text": "Monash University | Melbourne, Australia\nMaster of Business Analytics\nMarch 2022 - June 2024\nMaejo University | Chiang Mai, Thailand\nBachelor of Economics (International Economics)\nJune 2018 - April 2021"
+    "objectID": "posts/welcome/index.html#fantasy",
+    "href": "posts/welcome/index.html#fantasy",
+    "title": "My favorite anime list",
+    "section": "Fantasy",
+    "text": "Fantasy\nThat Time I Got Reincarnated as a Slime\n\nFairy Tail\n\nSword Art Online\n\nLog Horizon"
   },
   {
-    "objectID": "about.html#experiences",
-    "href": "about.html#experiences",
-    "title": "Aphiaut Imuan (Us)",
-    "section": "",
-    "text": "Srinagarind Hospital | Volunteer Data Analyst\nJan 2025 - Present\nW Melbourne, Pullman Hotel & D’elephant Thai Richmond (Australia) | Room Hospitality Roles (Part-time)\nDecember Mar 2022 - Jul 2026\nMonash University & Alfred Health | Research Assistance\nAugust 2023 - October 2024\nMuang Thai Life Assurance Public Company Limited | Life Planner\nJune 2021 - January 2022"
+    "objectID": "posts/welcome/index.html#fun",
+    "href": "posts/welcome/index.html#fun",
+    "title": "My favorite anime list",
+    "section": "Fun",
+    "text": "Fun\nSnow White with the Red Hair\n\nMaoyuu Maou Yuusha (Maoyu: Archenemy & Hero)\n\nConan\n\nDoraemon\n\nTom and Jerry\n\nSpy x Family"
+  },
+  {
+    "objectID": "posts/welcome/index.html#kamen-rider-series",
+    "href": "posts/welcome/index.html#kamen-rider-series",
+    "title": "My favorite anime list",
+    "section": "Kamen Rider Series",
+    "text": "Kamen Rider Series\nKamen Rider Kuuga\n\nKamen Rider 555\n\nKamen Rider Den-O\n\nKamen Rider OOO\n\nKamen Rider Wizard\n\nKamen Rider Drive\n\nKamen Rider Zi-O\n\nTo be honest, I love Geiz more than Zio hahaha.\n\nKamen Rider Zero-One"
+  },
+  {
+    "objectID": "posts/welcome/index.html#ultraman",
+    "href": "posts/welcome/index.html#ultraman",
+    "title": "My favorite anime list",
+    "section": "Ultraman",
+    "text": "Ultraman\nI like all Ultraman"
+  },
+  {
+    "objectID": "posts/welcome/index.html#super-sentai-power-ranger",
+    "href": "posts/welcome/index.html#super-sentai-power-ranger",
+    "title": "My favorite anime list",
+    "section": "Super Sentai (Power Ranger)",
+    "text": "Super Sentai (Power Ranger)\nI didn’t follow them for long time so it will have less than other series.\nMegaranger\nGingaman\nGaoranger\nHurricaneger\nAbaranger\nDekaranger\nMagiranger"
   },
   {
     "objectID": "posts/Economics/index.html",
@@ -70,59 +91,94 @@
     "text": "References\nAsean Cooperation on Environment. (n.d.). ASEAN Cooperation on Climate Change. Environment Division of the ASEAN Secretariat. Retrieved from https://environment.asean.org/awgcc/\nBilgili, F., Koçak, E., Bulut, Ü., & Kuloğlu, A. (2017). The impact of urbanization on energy intensity: Panel data evidence considering cross-sectional dependence and heterogeneity. Energy, 133, 242-256.\nCarson, R. T. (2010). The Environmental Kuznets Curve: Seeking Empirical Regularity and Theoretical Structure. Review of Environmental Economics and Policy, 4(1).\nChen, Y., Lee, C., & Lee, C. (2020). Does technological innovation reduce CO2 emission?Cross-country evidence. Journal of Cleaner Production, 263, 121550.\nCole, M. A., & Neumayer, E. (2004). Examining the Impact of Demographic Factors on Air Pollution. Population and Environment, 26(1), 5–21.\nDietz, T. & Rosa, E. A. (1994). Rethinking the Environmental Impacts of Population, Affluence and Technology, Human Ecology Review, 1, 277-300.\nDietz, T. & Rosa, E. A. (1997). Effect of population and affluence on CO2 emission, Ecology, 94, 175-179.\nDietz, T. & Rosa, E. A. (2007). Driving the human ecological footprint. Frontiers in Ecology and the Environment, 5(1), 13-18.\nFischer-Kowalski, M., Krausmann, F., Giljum, S., Lutter, S., Mayer, A., Bringezu, S., … Weisz, H. (2011). Methodology and Indicators of Economy-wide Material Flow Accounting. Journal of Industrial Ecology, 15(6), 855-876.\nGiedre, L., Manuela, T. & Pranas, V. (2014). Greenhouse gases emissions and economic growth - evidence substantiating the presence of environmental Kuznets curve in the EU. Technological and Economic Development of Economy, 20(1), 65-78.\nGrossman, G. M. & Krueger, A. (1995). Economic Growth and the Environment. The Quarterly Journal of Economics, 11(2), 353-377.\nGuo, H. & Jiang, Y. (2011). The Relationship between CO2 emissions, Economic Scale, Technology, Income and Population in China. Procedia Environmental Sciences, 11, 1183-1188.\nHusain, S. (2016). Testing the long run relationship between CO2 emission, Energy consumption and Economics Growth for Bangladesh. An ARDL Bound Testing Approach. British Journal of Economics, Finance and Management Sciences, 12(2), 12-23.\nInmaculada, M., Inmaculada, Z. & Antonello M. (2011). The impact of urbanization on CO2 emissions: Evidence from developing countries. Ecological Economics, 70, 1344-1353.\nIntergovernmental Panel on Climate Change. (2014) Climate Change 2014 Mitigation of Climate Change. New York, Cambridge University Press. Jones, D. W. (1991). How urbanization affects energy-use in developing countries. Energy Policy, 19(7), 621-630. Koçak, E., Ulucak, R., & Ulucak, Z. Ş. (2020). The impact of tourism developments on CO2 emission: An advanced panel data estimation. Tourism Management Perspectives, 33, 100611.\nLe, T.-H., Le, H.-C., & Taghizadeh-Hesary, F. (2020). Does financial inclusion impact CO2 emission? Evidence from Asia. Finance Research Letters, 34, 10145.\nLe, T. & Quah, E. (2018). Income level and the emission, energy, and growth nexus: Evidence from Asia and the Pacific. International Economics, 156, 193-205.\nLin, S., Zhao, D. & Marinova, A. (2009). Analysis of the environmental impact of China based on STIRPAT model. Environmental Impact Assessment Review, 29, 341-347.\nLuukkanen, J. & Kaivo-oja, J. (2002). ASEAN tigers and sustainability of energy use-decomposition analysis of energy and CO2 efficiency dynamics. Energy Policy, 30(4), 281-292\nMajeed, M. T. & Tauqir, A. (2020). Effects of Urbanization, Industrialization, Economic Growth, Energy Consumption and Financial Development on Carbon Emission: An Extended STIRPAT Model for Heterogenous Income Groups. Pakistan Journal of Commerce and Social Sciences, 14(3), 652-681.\nMansoor, A. & Sultana, B. (2018). Impact of Population, GDP and Energy Consumption on Carbon Emission: Evidence from Pakistan Using and Analytic Tool IPAT. Asian Journal of Economics and Empirical Research, 5(2), 183-190.\nMartínez-Zarzoso, I., & Maruotti, A. (2011). The impact of urbanization on CO2 emissions: Evidence from developing countries. Ecological Economics, 70(7), 1344-1353.\nMeangbua, O., Dhakal, S., & Kuwornu, J. K. M. (2019). Factors influencing energy requirements and CO2 emissions of households in Thailand: A panel data analysis. Energy Policy, 129, 521–531.\nMills, J.H., & Wate, T. A. (2009). Economic prosperity, biodiversity conservation, and the environmental Kuznets curve. Ecological Economics, 68(7), 2087-2095.\nMunir, Q., Lean, H. H., Smyth, R. (2020). Co2 emissions, energy consumption and economic growth in the ASEAN-5 countries: A cross-sectional dependence approach. Energy Economics, 85, 104571.\nNeumayer, E. (2002). Can natural factors explain any cross-country difference in carbon dioxide emissions?. Energy Policy, 30, 7-12.\nNordin, S. K. S., Samat, K. F., Ismail, S. F., Hamzah, K., Halim, B. A., & Kun, S. S. (2015). Determinants of CO2 emissions in ASEAN countries using energy and mining indicators. AIP Conference Proceeding, 1660(1).\nParamati, S. R., Alam, Md. S. & Chen, C. (2016). The Effects of Tourism on Economic Growth and CO2 Emission: A Comparison between Developed and Developing Economies. Journal of Travel Research, 56(6), 712-724.\nPual, R. E. & John, P.H. (1971). Impact of Population Growth. Science, 171(3977), 1212-1217.\nRabiul, I., Ahmad, B. A. G., & Emil, M. (2017). Carbon Dioxide Emission, Energy Consumption, Economic Growth, Population, Poverty and Forest Area: Evidence from Panel Data Analysis. International Journal of Energy Economics and Policy, 7(4), 99-106.\nRahman, A., Murad, S. M. W., Ahmad, F., & Wang, X. (2020). Evaluating the EKC Hypothesis for the BCIM-EC Member Countries under the Belt and Road Initiative. Sustainability, 12(4), 1478.\nSaboori, B., Rasoulinezhad, E., & Sung, J. (2017). The nexus of oil consumption, CO2 emissions and economic growth in China, Japan and South Korea. Environmental Science and Pollution Research, 24(8), 7436-7455.\nShaari, M. S., Karim, Z. A., & Abidin, N. Z. (2020). The effects of Energy Consumption and National Output on CO2 emissions: New Evidence from OIC Countries Using a Panel ARDL Analysis. sustainability, 12, 3312.\nShafik, N. (1994). Economic Development And Environmental Quality: An Econometric Analysis. Oxford Economic Paper, 46, 757-773.\nStern, D. I. (2004). The rise and fall of the environmental Kuznets curve. World Development, 32, 1419-1439.\nStern, P. C. (1993). A Second Environmental Science: Human-Environment Interactions. Science, 260(5116), 1897-1899.\nSulaiman, C. & Abdul-Rahim, A. S. (2018). Population Growth and CO2 emission in Nigeria: A Recursive ARDL Approach. SAGE Open, 8(2), 215824401876591.\nTalbi, B. (2017). CO2 emission reduction in road transport sector in Tunisia. Renewable and Sustainable Energy Reviews, 69, 232-238.\nThe Global Carbon Atlas. CO2 emission in ASEAN during 1960 to 2018. Retrieved from http://www.globalcarbonatlas.org/en/CO2-emissions\nWolde-Rufael, Y. & Idowu, S. (2017). Income distribution and CO2 emission: A comparative analysis for China and India. Renewable and Sustainable Energy Reviews, 74, 1336-1345.\nWorld Bank Indicators. (1992). World Development Report Development and the Environment. World Bank. Retrieved from http://documents1.worldbank.org/curated/en/995041468 323374213/pdf/105170REPLACEMENT0WDR01992.pdf\nXu, X. Y. & Ang, B. W. (2013). Index decomposition analysis applied to CO2 emission studies. Ecological Economics, 93, 313-329.\nYeh, J. & L, C. (2017). Impact of population and economic growth on carbon emission in Taiwan using and analytic tool STIRPAT. Sustainable Environment Research, 27, 41-48.\nYork, R., Rosa, E. A., & Dietz, T. (2003). STIRPAT, IPAT and ImPACT: analytic tools for unpacking the driving forces of environmental impacts. Ecological Economics, 46, 351-365.\nZhang, X. & Cheng, X. (2009). Energy consumption, carbon emission, and economic growth in China. Ecological Economics, 68, 2706-2712."
   },
   {
-    "objectID": "posts/water_quality/index.html",
-    "href": "posts/water_quality/index.html",
-    "title": "Water Quality",
-    "section": "",
-    "text": "Microbial Assessment Category (MAC)"
-  },
-  {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "My favorite anime list",
-    "section": "",
-    "text": "I will share anime that I have watched since I was young, and I think I love it."
-  },
-  {
-    "objectID": "posts/welcome/index.html#fantasy",
-    "href": "posts/welcome/index.html#fantasy",
-    "title": "My favorite anime list",
-    "section": "Fantasy",
-    "text": "Fantasy\nThat Time I Got Reincarnated as a Slime\n\nFairy Tail\n\nSword Art Online\n\nLog Horizon"
-  },
-  {
-    "objectID": "posts/welcome/index.html#fun",
-    "href": "posts/welcome/index.html#fun",
-    "title": "My favorite anime list",
-    "section": "Fun",
-    "text": "Fun\nSnow White with the Red Hair\n\nMaoyuu Maou Yuusha (Maoyu: Archenemy & Hero)\n\nConan\n\nDoraemon\n\nTom and Jerry\n\nSpy x Family"
-  },
-  {
-    "objectID": "posts/welcome/index.html#kamen-rider-series",
-    "href": "posts/welcome/index.html#kamen-rider-series",
-    "title": "My favorite anime list",
-    "section": "Kamen Rider Series",
-    "text": "Kamen Rider Series\nKamen Rider Kuuga\n\nKamen Rider 555\n\nKamen Rider Den-O\n\nKamen Rider OOO\n\nKamen Rider Wizard\n\nKamen Rider Drive\n\nKamen Rider Zi-O\n\nTo be honest, I love Geiz more than Zio hahaha.\n\nKamen Rider Zero-One"
-  },
-  {
-    "objectID": "posts/welcome/index.html#ultraman",
-    "href": "posts/welcome/index.html#ultraman",
-    "title": "My favorite anime list",
-    "section": "Ultraman",
-    "text": "Ultraman\nI like all Ultraman"
-  },
-  {
-    "objectID": "posts/welcome/index.html#super-sentai-power-ranger",
-    "href": "posts/welcome/index.html#super-sentai-power-ranger",
-    "title": "My favorite anime list",
-    "section": "Super Sentai (Power Ranger)",
-    "text": "Super Sentai (Power Ranger)\nI didn’t follow them for long time so it will have less than other series.\nMegaranger\nGingaman\nGaoranger\nHurricaneger\nAbaranger\nDekaranger\nMagiranger"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Us’s blog",
     "section": "",
-    "text": "Reading Sydney’s Water Quality\n\n\n\nR\n\nEnvironment\n\nTidyTuesday\n\n\n\nA reproducible R exploration of swimming-site samples, monthly variation, and the importance of missing data.\n\n\n\n\n\nMay 20, 2025\n\n\nAuggie Imuan\n\n\n\n\n\n\n\n\n\n\n\n\nMy favorite anime list\n\n\n\nAnime\n\n\n\n\n\n\n\n\n\nNov 21, 2024\n\n\nAphiaut Imuan\n\n\n\n\n\n\n\n\n\n\n\n\nThe Factors Affect CO2 Emission in 5-ASEAN Countries\n\n\n\neconomics\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 31, 2021\n\n\nAphiaut Imuan\n\n\n\n\n\nNo matching items"
+    "text": "Reading Sydney’s Water Quality\n\n\n\nR\n\nEnvironment\n\nTidyTuesday\n\n\n\nA reproducible R exploration of swimming-site samples, monthly variation, and the importance of missing data.\n\n\n\n\n\nMay 20, 2025\n\n\nAphiaut Imuan\n\n\n\n\n\n\n\n\n\n\n\n\nMy favorite anime list\n\n\n\nAnime\n\n\n\n\n\n\n\n\n\nNov 21, 2024\n\n\nAphiaut Imuan\n\n\n\n\n\n\n\n\n\n\n\n\nThe Factors Affect CO2 Emission in 5-ASEAN Countries\n\n\n\neconomics\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 31, 2021\n\n\nAphiaut Imuan\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Aphiaut Imuan (Us)",
+    "section": "",
+    "text": "Hello guys!!! My name is Aphiaut Imuan, you can call me Auggie. I’m a little cute Thai guy. I hope you will kind to me and happy with my blog. 😄\n\n\nMonash University | Melbourne, Australia\nMaster of Business Analytics\nMarch 2022 - June 2024\nMaejo University | Chiang Mai, Thailand\nBachelor of Economics (International Economics)\nJune 2018 - April 2021\n\n\n\nSrinagarind Hospital | Volunteer Data Analyst\nJan 2025 - Present\nW Melbourne, Pullman Hotel & D’elephant Thai Richmond (Australia) | Room Hospitality Roles (Part-time)\nDecember Mar 2022 - Jul 2026\nMonash University & Alfred Health | Research Assistance\nAugust 2023 - October 2024\nMuang Thai Life Assurance Public Company Limited | Life Planner\nJune 2021 - January 2022"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "Aphiaut Imuan (Us)",
+    "section": "",
+    "text": "Monash University | Melbourne, Australia\nMaster of Business Analytics\nMarch 2022 - June 2024\nMaejo University | Chiang Mai, Thailand\nBachelor of Economics (International Economics)\nJune 2018 - April 2021"
+  },
+  {
+    "objectID": "about.html#experiences",
+    "href": "about.html#experiences",
+    "title": "Aphiaut Imuan (Us)",
+    "section": "",
+    "text": "Srinagarind Hospital | Volunteer Data Analyst\nJan 2025 - Present\nW Melbourne, Pullman Hotel & D’elephant Thai Richmond (Australia) | Room Hospitality Roles (Part-time)\nDecember Mar 2022 - Jul 2026\nMonash University & Alfred Health | Research Assistance\nAugust 2023 - October 2024\nMuang Thai Life Assurance Public Company Limited | Life Planner\nJune 2021 - January 2022"
+  },
+  {
+    "objectID": "posts/water_quality/index.html",
+    "href": "posts/water_quality/index.html",
+    "title": "Reading Sydney’s Water Quality",
+    "section": "",
+    "text": "Water-quality data looks simple at first. There is a place, a date, and a measurement. But once I started exploring this dataset, I realised that the numbers were not quite as straightforward as they seemed.\nA high average, for example, does not necessarily mean that every sample from a site was high. It could be the result of just one unusually large measurement. Missing values also need some care: a measurement that was never recorded is very different from a recorded value of zero.\nIn this post, I use R to explore where samples were collected around Sydney, take a closer look at site measurements during April 2024, and then step back to see how the distribution has changed over time."
+  },
+  {
+    "objectID": "posts/water_quality/index.html#about-the-data",
+    "href": "posts/water_quality/index.html#about-the-data",
+    "title": "Reading Sydney’s Water Quality",
+    "section": "About the data",
+    "text": "About the data\nThe data comes from the TidyTuesday release of 20 May 2025, based on monitoring data from NSW Beachwatch.\nFor this exploration, I focus on enterococci, measured in colony-forming units per 100 mL (CFU / 100 mL).\nBefore doing any comparisons, I removed records without a valid date or enterococci measurement, as well as negative measurements. I kept genuine zero measurements, because zero is still an observed value.\n\n\nShow R code\nlibrary(tidyverse)\nlibrary(lubridate)\nlibrary(sf)\n\nwater_quality &lt;- read_csv(\"data/water_quality.csv\", show_col_types = FALSE) |&gt;\n  mutate(date = as.Date(date))\n\ntheme_set(theme_minimal(base_size = 12) +\n  theme(panel.grid.minor = element_blank(),\n        plot.title = element_text(face = \"bold\", colour = \"#285d7b\"),\n        plot.background = element_rect(fill = \"#fbfdff\", colour = NA)))\n\nvalid &lt;- water_quality |&gt;\n  filter(!is.na(date), !is.na(enterococci_cfu_100ml),\n         enterococci_cfu_100ml &gt;= 0)\n\ncoverage &lt;- tibble(\n  Measure = c(\"Rows in source\", \"Rows with a valid date and non-negative measurement\",\n              \"Distinct council / site pairs\", \"First sample\", \"Last sample\"),\n  Value = c(nrow(water_quality), nrow(valid),\n            nrow(distinct(valid, council, swim_site)),\n            as.character(min(valid$date)), as.character(max(valid$date)))\n)\n#knitr::kable(coverage, caption = \"Coverage of the downloaded snapshot\")\n\n\nThere are 123,530 rows in the original dataset. After removing records without a usable date or measurement, 123,223 observations remain. These represent 79 council–site combinations, with samples stretching from September 1991 to April 2025.\nOne detail is especially important for the rest of the analysis: I leave missing measurements as missing. I do not turn them into zero. A zero means that a measurement was actually recorded as zero; a missing value means that there is no measurement to summarise.\nThis is historical monitoring data, so the results here describe the downloaded dataset rather than current swimming conditions."
+  },
+  {
+    "objectID": "posts/water_quality/index.html#where-were-samples-collected",
+    "href": "posts/water_quality/index.html#where-were-samples-collected",
+    "title": "Reading Sydney’s Water Quality",
+    "section": "Where were samples collected?",
+    "text": "Where were samples collected?\nBefore looking at the measurements themselves, I wanted to see where the observations actually came from.\n\n\nShow R code\nsites &lt;- water_quality |&gt;\n  distinct(council, swim_site, latitude, longitude) |&gt;\n  drop_na(latitude, longitude)\n\nload(\"data/lgas.rda\")\nlgas &lt;- lgas %&gt;% na.omit()\nnsw_map &lt;- ggplot(lgas) +\n  geom_sf(fill=NA, colour=\"grey80\",fill = \"white\")\n\n\nnsw_map +\n  coord_sf(xlim = c(150, 151.5), ylim = c(-34.2, -33.4), expand = FALSE) + \n  geom_point(data=sites, aes(x=longitude,\n                                y=latitude, group=NA),\n             colour = \"#377ca0\", alpha = 0.65, size = 1.8) +\n  \n  labs(title = \"The geography of the samples\", x = \"Longitude\", y = \"Latitude\")\n\n\n\n\n\n\n\n\nFigure 1: Sampling coordinates in the source data. This is a location plot, without a coastline basemap.\n\n\n\n\n\nThe sampling locations are clearly concentrated around Sydney’s coast and harbour. There are also a handful of sites further inland, but the eastern side of the map contains most of the observations.\nThis is useful context for everything that follows. The dataset represents a network of monitored locations rather than every possible swimming site across Sydney. Areas without points on the map should therefore be read as places that are not represented here, not places where the water necessarily had lower measurements.\nFigure 1. Locations represented in the water-quality data. Most monitoring sites are concentrated around Sydney’s coastline and harbour."
+  },
+  {
+    "objectID": "posts/water_quality/index.html#which-sites-stood-out-in-april-2024",
+    "href": "posts/water_quality/index.html#which-sites-stood-out-in-april-2024",
+    "title": "Reading Sydney’s Water Quality",
+    "section": "Which sites stood out in April 2024?",
+    "text": "Which sites stood out in April 2024?\nWith more than three decades of data, comparing every site across the full time period would quickly become difficult to interpret. Instead, I picked April 2024 as a snapshot and calculated the average enterococci measurement for each site during that month.\n\n\nShow R code\napril &lt;- valid |&gt;\n  filter(date &gt;= as.Date(\"2024-04-01\"), date &lt; as.Date(\"2024-05-01\")) |&gt;\n  group_by(council, swim_site) |&gt;\n  summarise(samples = n(), mean_cfu = mean(enterococci_cfu_100ml),\n            median_cfu = median(enterococci_cfu_100ml),\n            max_cfu = max(enterococci_cfu_100ml), .groups = \"drop\") |&gt;\n  arrange(desc(mean_cfu))\nstopifnot(nrow(april) &gt; 0)\ntop_sites &lt;- april |&gt;\n  slice_head(n = 15) |&gt;\n  mutate(site_label = paste(swim_site, council, sep = \" · \"))\n\n\n\n\nShow R code\nggplot(top_sites, aes(mean_cfu, reorder(site_label, mean_cfu))) +\n  geom_col(fill = \"#91c7da\", width = 0.7) +\n  geom_text(aes(label = paste0(\"n = \", samples)), hjust = -0.12, size = 3.2) +\n  scale_x_continuous(expand = expansion(mult = c(0, 0.18))) +\n  labs(title = \"A monthly snapshot, not a permanent ranking\",\n       x = \"Mean enterococci (CFU / 100 mL)\", y = NULL)\n\n\n\n\n\n\n\n\nFigure 2: The 15 highest site means in April 2024. Labels show the number of valid samples contributing to each mean.\n\n\n\n\n\nA few sites immediately stand out.\nBilarong Reserve has the highest mean in this snapshot, at about 406 CFU / 100 mL. Queenscliff Beach follows at roughly 235, while Tamarama Beach and Darling Harbour also have noticeably higher means than most of the other sites shown.\nBut the small labels beside the bars are just as important as the bars themselves.\nMost of these averages are based on only five or six samples. That makes the chart useful for understanding what happened during April 2024, but it would be misleading to treat it as a permanent ranking of the sites.\nIt is better thought of as a snapshot: these are the sites with the highest recorded averages during this particular month.\nFigure 2. Sites with the highest mean enterococci measurements in April 2024. Each label shows how many valid samples contributed to the monthly average."
+  },
+  {
+    "objectID": "posts/water_quality/index.html#what-is-hiding-behind-the-average",
+    "href": "posts/water_quality/index.html#what-is-hiding-behind-the-average",
+    "title": "Reading Sydney’s Water Quality",
+    "section": "What is hiding behind the average?",
+    "text": "What is hiding behind the average?\nThe April chart raised another question for me.\nBilarong Reserve had a mean of 406. Does that mean its individual measurements were consistently around 400?\nNot quite.\nLooking at the mean alongside the median and maximum gives a much better picture of what happened within the month.\n\n\nShow R code\napril |&gt;\n  slice_head(n = 10) |&gt;\n  select(Council = council, Site = swim_site, Samples = samples,\n         Mean = mean_cfu, Median = median_cfu, Maximum = max_cfu) |&gt;\n  knitr::kable(digits = 1, caption = \"Sample counts and distribution summaries for the ten highest means\")\n\n\n\nSample counts and distribution summaries for the ten highest means\n\n\n\n\n\n\n\n\n\n\nCouncil\nSite\nSamples\nMean\nMedian\nMaximum\n\n\n\n\nNorthern Beaches Council\nBilarong Reserve\n5\n406.0\n200.0\n1100\n\n\nNorthern Beaches Council\nQueenscliff Beach\n5\n234.8\n30.0\n700\n\n\nWaverley Council\nTamarama Beach\n6\n174.8\n23.5\n960\n\n\nThe City of Sydney\nDarling Harbour\n6\n166.0\n70.0\n490\n\n\nWaverley Council\nBronte Beach\n6\n126.3\n11.5\n420\n\n\nSutherland Shire Council\nBoat Harbour\n6\n79.7\n60.0\n170\n\n\nRandwick City Council\nLittle Bay Beach\n6\n69.0\n31.0\n280\n\n\nNorthern Beaches Council\nClontarf Pool\n6\n68.2\n22.0\n210\n\n\nRandwick City Council\nCoogee Beach\n6\n65.8\n24.0\n220\n\n\nCity of Canada Bay Council\nCabarita Beach\n6\n63.8\n13.0\n320\n\n\n\n\n\nFor Bilarong Reserve, the mean is 406, but the median is 200 and the maximum reaches 1,100 CFU / 100 mL.\nThe difference is even more striking at Queenscliff Beach. Its mean is about 235, but its median is only 30, while the highest measurement is 700.\nTamarama Beach tells a similar story: a mean of roughly 175, a median of 23.5, and a maximum of 960.\nThese are very different descriptions of the same data.\nThe mean is being pulled upward by relatively large observations, while the median tells us that a typical sample during the month was much lower. That does not make the mean incorrect; it simply shows why I would not want to interpret it on its own.\nFor these sites, the sample count, mean, median, and maximum together tell a much more useful story than a single average."
+  },
+  {
+    "objectID": "posts/water_quality/index.html#missing-does-not-mean-zero",
+    "href": "posts/water_quality/index.html#missing-does-not-mean-zero",
+    "title": "Reading Sydney’s Water Quality",
+    "section": "Missing does not mean zero",
+    "text": "Missing does not mean zero\nThere was another issue I had to think about while working with this dataset.\nEach swimming site belongs to a particular council. This means that many theoretical council–site combinations simply do not exist.\nIf I created a complete council-by-site grid and filled all of those empty combinations with zero, the resulting chart would look complete, but it would quietly introduce information that was never observed.\nA blank combination does not mean:\n\nenterococci = 0\n\nIt means:\n\nthere is no observation for that combination.\n\nThat distinction is why I keep missing combinations as missing and compare the observed sites directly instead.\nIt is a small data-cleaning decision, but it changes the meaning of the result."
+  },
+  {
+    "objectID": "posts/water_quality/index.html#how-have-measurements-varied-over-time",
+    "href": "posts/water_quality/index.html#how-have-measurements-varied-over-time",
+    "title": "Reading Sydney’s Water Quality",
+    "section": "How have measurements varied over time?",
+    "text": "How have measurements varied over time?\nAfter looking closely at one month, I wanted to zoom back out.\nInstead of following individual sites, I summarised the recorded measurements within each month from 2000 onward. The dark line shows the monthly median, while the shaded area represents the interquartile range, or the middle 50% of observations.\n\n\nShow R code\nmonthly &lt;- valid |&gt;\n  filter(year(date) &gt;= 2000) |&gt;\n  mutate(month = floor_date(date, \"month\")) |&gt;\n  group_by(month) |&gt;\n  summarise(median_cfu = median(enterococci_cfu_100ml),\n            q25 = quantile(enterococci_cfu_100ml, 0.25),\n            q75 = quantile(enterococci_cfu_100ml, 0.75),\n            samples = n(), .groups = \"drop\")\n\nggplot(monthly, aes(month, median_cfu)) +\n  geom_ribbon(aes(ymin = q25, ymax = q75), fill = \"#c5e3ed\") +\n  geom_line(colour = \"#285d7b\", linewidth = 0.6) +\n  labs(title = \"The centre of the distribution — and its spread\",\n       x = NULL, y = \"Enterococci (CFU / 100 mL)\")\n\n\n\n\n\n\n\n\nFigure 3: Median and interquartile range of recorded measurements within each month since 2000; changing site coverage can affect this pooled summary.\n\n\n\n\n\nMost of the time, the median stays relatively low. The spread around it, however, is much less consistent.\nSome months have a narrow band, meaning that the middle half of the observations were fairly similar. In other months, the band becomes much wider, showing that measurements varied considerably across the samples recorded during that period.\nThere is a particularly large spread near the beginning of the series, followed by smaller but still noticeable spikes throughout later years.\nI would be careful about reading this as a simple story of water quality getting better or worse over time. The monitoring network itself may have changed: different sites may have entered or left the dataset, and sampling frequency may not have remained constant.\nWhat the chart does show clearly is that the typical measurement and the variability around it are two different things. The median can remain fairly stable even during months when some observations are much higher than others.\nFigure 3. Monthly median enterococci measurements since 2000. The shaded band shows the interquartile range and highlights periods when the recorded measurements were more variable."
+  },
+  {
+    "objectID": "posts/water_quality/index.html#what-i-took-away-from-this-analysis",
+    "href": "posts/water_quality/index.html#what-i-took-away-from-this-analysis",
+    "title": "Reading Sydney’s Water Quality",
+    "section": "What I took away from this analysis",
+    "text": "What I took away from this analysis\nI started with what seemed like a fairly simple dataset and an equally simple question: which sites had the highest measurements?\nBy the end, that was probably the least interesting question.\nThe April snapshot showed how easily an average can be influenced by a small number of high observations. Comparing the mean with the median and maximum made that much clearer. Looking at the data over time showed something similar: a relatively stable centre can exist alongside periods of much greater variation.\nThe missing values were another useful reminder. Filling an empty space with zero may make a table or heatmap easier to build, but it can also give that empty space a meaning it never had.\nThe biggest lesson for me was simple: before interpreting a summary statistic, I need to understand what observations went into it.\nSometimes the most useful part of an analysis is not finding the highest bar on the chart. It is figuring out why that bar is high in the first place."
+  },
+  {
+    "objectID": "posts/water_quality/index.html#tools",
+    "href": "posts/water_quality/index.html#tools",
+    "title": "Reading Sydney’s Water Quality",
+    "section": "Tools",
+    "text": "Tools\nThis analysis was created in R with tidyverse, lubridate, sf packages, and lga 2022 map.\nData source: TidyTuesday — 20 May 2025."
   }
 ]

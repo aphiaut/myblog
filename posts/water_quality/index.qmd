@@ -1,10 +1,10 @@
 ---
 title: "Reading Sydney's Water Quality"
 description: "A reproducible R exploration of swimming-site samples, monthly variation, and the importance of missing data."
-author: "Auggie Imuan"
+author: "Aphiaut Imuan"
 date: "2025-05-20"
 categories: [R, Environment, TidyTuesday]
-image: "image.jpg"
+image: "water.jpg"
 body-classes: post-water
 ---
 
@@ -59,7 +59,7 @@ coverage <- tibble(
             nrow(distinct(valid, council, swim_site)),
             as.character(min(valid$date)), as.character(max(valid$date)))
 )
-knitr::kable(coverage, caption = "Coverage of the downloaded snapshot")
+#knitr::kable(coverage, caption = "Coverage of the downloaded snapshot")
 ```
 
 There are **123,530 rows** in the original dataset. After removing records without a usable date or measurement, **123,223 observations** remain. These represent **79 council–site combinations**, with samples stretching from September 1991 to April 2025.
@@ -71,8 +71,6 @@ This is historical monitoring data, so the results here describe the downloaded 
 ## Where were samples collected?
 
 Before looking at the measurements themselves, I wanted to see where the observations actually came from.
-
-
 
 ```{r}
 #| label: fig-sites
@@ -108,7 +106,6 @@ This is useful context for everything that follows. The dataset represents a net
 ## Which sites stood out in April 2024?
 
 With more than three decades of data, comparing every site across the full time period would quickly become difficult to interpret. Instead, I picked **April 2024** as a snapshot and calculated the average enterococci measurement for each site during that month.
-
 
 ```{r}
 #| label: april-summary
@@ -208,7 +205,6 @@ It is a small data-cleaning decision, but it changes the meaning of the result.
 After looking closely at one month, I wanted to zoom back out.
 
 Instead of following individual sites, I summarised the recorded measurements within each month from 2000 onward. The dark line shows the **monthly median**, while the shaded area represents the **interquartile range**, or the middle 50% of observations.
-
 
 ```{r}
 #| label: fig-monthly
